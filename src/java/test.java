@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!PULLLLLLLLLLLLLLLLLL234
- * Allo mon premier Push
+ * @author usager
  */
-@WebServlet(urlPatterns = {"/SUPP"})
-public class SUPP extends HttpServlet {
+@WebServlet(urlPatterns = {"/test"})
+public class test extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +35,10 @@ public class SUPP extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SUPP</title>");            
+            out.println("<title>Servlet test</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SUPP at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet test at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
