@@ -20,11 +20,15 @@
     </servlet>
     <servlet>
         <servlet-name>creationCompte</servlet-name>
-        <servlet-class>com.atoudeft.web.mvc.Creation</servlet-class>
+        <servlet-class>com.atoudeft.web.mvc.CreationCompte</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>modificationCompte</servlet-name>
-        <servlet-class>com.atoudeft.web.mvc.Modification</servlet-class>
+        <servlet-class>com.atoudeft.web.mvc.ModificationCompte</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>gestionDuPanier</servlet-name>
+        <servlet-class>com.atoudeft.web.mvc.GestionDuPanier</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>login</servlet-name>
@@ -45,6 +49,10 @@
     <servlet-mapping>
         <servlet-name>modificationCompte</servlet-name>
         <url-pattern>/modification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gestionDuPanier</servlet-name>
+        <url-pattern>/gestionPanier</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>login</servlet-name>

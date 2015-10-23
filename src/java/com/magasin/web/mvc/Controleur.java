@@ -37,7 +37,7 @@ public class Controleur extends HttpServlet {
         {
             if ("login".equals(action))
             {
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signin");  //redirection vers la servlet login
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/Login");  //redirection vers la servlet login
                 r.forward(request, response);     
                 return;
             }            

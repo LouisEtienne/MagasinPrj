@@ -39,12 +39,13 @@
         {
             out.println("<p class=\"errorMessage\">"+request.getAttribute("message")+"</p>");
         }
-        String  ns1 = request.getParameter("nb1"),
-                ns2 = request.getParameter("nb2"),
-                ops = request.getParameter("operation"),
+       // String  ns1 = request.getParameter("nb1"),
+       //         ns2 = request.getParameter("nb2"),
+        String    ops = request.getParameter("operation"),
                 selected=" selected=\"selected\"";
-        if (ns1==null) ns1="";
-        if (ns2==null) ns2="";
+       // if (ns1==null) ns1="";
+       // if (ns2==null) ns2="";
+        
         %>
         <form action="abc.do" method="post">
             
@@ -55,12 +56,14 @@
             </select>
            
             <input type="submit" value=" Submit " />
+            <jsp:include page = "" flush = "true"/>
+            
         <%
-        if (request.getAttribute("resultat")!=null)
-        {
+        //if (request.getAttribute("resultat")!=null)
+       // {
             //double x = ((Double)request.getAttribute("resultat")).doubleValue();
-            out.println("<span class=\"resultat\">"+request.getAttribute("resultat")+"</span>");
-        }
+        //    out.println("<span class=\"resultat\">"+request.getAttribute("resultat")+"</span>");
+        //}
         %>
         </form>
         
