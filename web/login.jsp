@@ -16,13 +16,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Exemple de MVC</title>
+        <title>Connexion</title>
         <style type="text/css">
             .errorMessage {color : red;}
+            body {background-color:lightgray}
+            #form {width : 50%}
+            #form {background-color:orange}
+            #form {border-style: solid}
         </style>
+        
     </head>
     <body>
-<%
+        <h1>Connexion</h1>
+        <%
         if (request.getAttribute("message")!=null)
         {
             out.println("<span class=\"errorMessage\">"+request.getAttribute("message")+"</span>");
@@ -31,12 +37,23 @@
         if (us1==null) us1="";
         else us1 = us1.trim();
         %>
-        <form action="login.do" method="post">
-            Username : <input type="text" name="username" value="<%=us1%>" /><br />
-            Password : <input type="password" name="password" />
-            <input type="hidden" name="action" value="login" /><br />
-            <input type="submit" value=" Connexion " />
-        </form>    
+        <div id="form">
+	<form action="login.do" method="post">
+		<h3>Administrateur</h3>
+		code Administrateur: <input type="text" name="firstname">
+		<br><br>
+		Mot de passe:	<input type="password" name="lastname">
+		<br><br>
+		<hr><h3>Client</h3>
+		Adresse Email: <input type="text" name="firstname">
+		<br><br>
+		Mot de passe:	<input type="password" name="lastname">
+		<br><br>
+                <input type="hidden" name="action" value="login" /><br />
+		<input type="submit" value="Submit">
+		<br><br>
+	</form>
+</div>
     </body>
 </html>
 
