@@ -38,7 +38,7 @@
         else us1 = us1.trim();
         %>
         <div id="form">
-	<form action="login.do" method="post">
+	<form action="login.do">
 		<h3>Administrateur</h3>
 		code Administrateur: <input type="text" name="firstname">
 		<br><br>
