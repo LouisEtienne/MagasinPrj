@@ -39,12 +39,13 @@
         %>
         <div id="form">
             <form action="login.do" >
+                <input type="hidden" name="action" value="loginAcheteur" />
                 <h3>Client</h3>
 		Adresse Email: <input type="text" name="mail">
 		<br><br>
 		Mot de passe:	<input type="password" name="pass">
 		<br><br>
-                <input type="hidden" name="action" value="loginAcheteur" /><br />
+                <br />
 		<input type="submit" value="Submit">
 		<br><br>
         </form>

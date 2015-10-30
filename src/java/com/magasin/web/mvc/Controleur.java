@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Louis
  */
-@WebServlet(name = "Controleur", urlPatterns = {"/Controleur"})
+//@WebServlet(name = "Controleur", urlPatterns = {"/Controleur"})
 public class Controleur extends HttpServlet {
     /**
      * Processes requests for both HTTP
@@ -44,7 +44,8 @@ public class Controleur extends HttpServlet {
             if ("logout".equals(action))
             {
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signout");  //redirection vers la servlet login
-                r.forward(request, response);                
+                r.forward(request, response);
+                return;
             }            
             return;
         }

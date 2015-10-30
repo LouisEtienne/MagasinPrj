@@ -11,45 +11,45 @@
         <param-value>jdbc:mysql://localhost/online_store?user=root&amp;password=root</param-value>
     </context-param>
     <servlet>
-        <servlet-name>controleur</servlet-name>
-        <servlet-class>com.atoudeft.web.mvc.Controleur</servlet-class>
+        <servlet-name>Controleur</servlet-name>
+        <servlet-class>com.magasin.web.mvc.Controleur</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>creationCompte</servlet-name>
-        <servlet-class>com.atoudeft.web.mvc.Creation</servlet-class>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.magasin.web.mvc.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>modificationCompte</servlet-name>
-        <servlet-class>com.atoudeft.web.mvc.Modification</servlet-class>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>com.magasin.web.mvc.Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>login</servlet-name>
-        <servlet-class>com.atoudeft.web.mvc.Login</servlet-class>
+        <servlet-name>ModificationCompte</servlet-name>
+        <servlet-class>com.magasin.web.mvc.ModificationCompte</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>logout</servlet-name>
-        <servlet-class>com.atoudeft.web.mvc.Logout</servlet-class>
+        <servlet-name>CreationCompte</servlet-name>
+        <servlet-class>com.magasin.web.mvc.CreationCompte</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>controleur</servlet-name>
+        <servlet-name>Controleur</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>creationCompte</servlet-name>
-        <url-pattern>/creation</url-pattern>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>modificationCompte</servlet-name>
-        <url-pattern>/modification</url-pattern>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>login</servlet-name>
-        <url-pattern>/signin</url-pattern>
+        <servlet-name>ModificationCompte</servlet-name>
+        <url-pattern>/ModificationCompte</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>logout</servlet-name>
-        <url-pattern>/signout</url-pattern>
+        <servlet-name>CreationCompte</servlet-name>
+        <url-pattern>/CreationCompte</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
