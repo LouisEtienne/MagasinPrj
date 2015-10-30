@@ -36,8 +36,9 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String  u = request.getParameter("username"),
-                p = request.getParameter("password");
+        
+        String  u = request.getParameter("mail"),
+                p = request.getParameter("pass");
         if (u==null || u.trim().equalsIgnoreCase(""))
         {
             //Utilisateur inexistant

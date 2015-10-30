@@ -38,22 +38,22 @@
         else us1 = us1.trim();
         %>
         <div id="form">
-            <form action="login.do" method="POST">
+            <form action="login.do" >
                 <h3>Client</h3>
-		Adresse Email: <input type="text" name="firstname">
+		Adresse Email: <input type="text" name="mail">
 		<br><br>
-		Mot de passe:	<input type="password" name="lastname">
+		Mot de passe:	<input type="password" name="pass">
 		<br><br>
                 <input type="hidden" name="action" value="loginAcheteur" /><br />
 		<input type="submit" value="Submit">
 		<br><br>
         </form>
             <hr>
-        <form action="Ctrl.do" method="POST">
+        <form action="Ctrl.do" >
             <h3>Administrateur</h3>
-		code Administrateur: <input type="text" name="firstname">
+		code Administrateur: <input type="text" name="aCode">
 		<br><br>
-		Mot de passe:	<input type="password" name="lastname">
+		Mot de passe:	<input type="password" name="pass">
 		<br><br>
                 <input type="hidden" name="action" value="loginAdmin" /><br />
 		<input type="submit" value="Submit">

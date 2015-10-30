@@ -35,7 +35,7 @@ public class Controleur extends HttpServlet {
         String action = request.getParameter("action");
         if (action !=null)
         {
-            if ("login".equals(action))
+            if ("loginAcheteur".equals(action))
             {
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/Login");  //redirection vers la servlet login
                 r.forward(request, response);     

@@ -87,7 +87,7 @@ public class AcheteurDao extends Dao<Acheteur> {
     }
 
     @Override
-    public Acheteur read(String id) {
+    public Acheteur read(String cour) {
         // TODO Auto-generated method stub
         PreparedStatement stm = null;
         try {
@@ -95,7 +95,7 @@ public class AcheteurDao extends Dao<Acheteur> {
 //            ResultSet r = stm.executeQuery("SELECT * FROM user WHERE numId = '" + id + "'");
             //Avec requête paramétrée :
             stm = cnx.prepareStatement("SELECT * FROM user WHERE courriel = ?");
-            stm.setString(1,id);
+            stm.setString(1,cour);
             ResultSet r = stm.executeQuery();
             if (r.next()) {
                 //User c = new User(r.getString("numId"),r.getString("mdp"));
