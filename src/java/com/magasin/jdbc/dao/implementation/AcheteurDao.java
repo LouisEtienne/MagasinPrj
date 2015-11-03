@@ -30,7 +30,8 @@ public class AcheteurDao extends Dao<Acheteur> {
     public boolean create(Acheteur x) {
         // TODO Auto-generated method stub
 
-        String req = "INSERT INTO user (`numId` , `mdp`) "
+        //String req = "INSERT INTO acheteur (`numId` , `mdp`) "
+        String req = "INSERT INTO acheteur(`courriel`, `motPasseAcheteur`, `noCarteCredit`, `nomAcheteur`, `prenomAcheteur`, `adresse`, `ville`, `province`, `codePostal`, `telephonePrincipal`, `telephoneSecondaire`, `compteActif`)"
                 + "VALUES ('" + x.getCourriel() + "','" + x.getMotPasseAcheteur() + "','" + x.getNoCarteCredit() + "','" + x.getNomAcheteur() + "','" + x.getPrenomAcheteur() + 
                 "','" + x.getAdresse() + "','" + x.getVille() + "','" + x.getProvince() + "','" + x.getCodePostal() + "','" + x.getTelephonePrincipal() + "'"
                 + ",'" + x.getTelephoneSecondaire() + "','" + x.isCompteActif() + "')";

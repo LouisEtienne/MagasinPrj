@@ -1,24 +1,25 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor...
+ * and open the template in the editor.
  */
 package com.magasin.web.mvc;
 
+import com.magasin.entities.Acheteur;
+import com.magasin.jdbc.Connexion;
+import com.magasin.jdbc.dao.implementation.AcheteurDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Louis
+ * @author usager
  */
-@WebServlet(name = "CreationCompte", urlPatterns = {"/CreationCompte"})
 public class CreationCompte extends HttpServlet {
 
     /**
@@ -33,8 +34,66 @@ public class CreationCompte extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+        /*                  
+        request.getParameter("courr");
+        request.getParameter("pass");                    
+        request.getParameter("passConf");
+        request.getParameter("nom");        
+        request.getParameter("pren");
+        request.getParameter("adre");        
+        request.getParameter("phone");
+        request.getParameter("phone2");
+        request.getParameter("ville");
+        request.getParameter("pro");      
+        request.getParameter("cPos");
+        request.getParameter("cred");          
+        */
+        Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
+        AcheteurDao dao = new AcheteurDao(Connexion.getInstance());
+        Acheteur ach = dao.read(request.getParameter("courr").trim());
+
+            if (ach!=null)
+            {
+                //Utilisateur existant
+                request.setAttribute("message", "Utilisateur "+ach.getNomAcheteur()+" déja existant.");
+                //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+                r.forward(request, response);
+            }
+            else
+            {
+                ach = new Acheteur();
+                ach.setAdresse(request.getParameter("adre"));
+                ach.setCodePostal(request.getParameter("cPos"));
+                ach.setCompteActif(true);
+                ach.setCourriel(request.getParameter("courr"));
+                ach.setVille(request.getParameter("ville"));
+                ach.setTelephoneSecondaire(request.getParameter("phone2"));
+                ach.setTelephonePrincipal(request.getParameter("phone"));
+                ach.setProvince(request.getParameter("pro"));
+                ach.setPrenomAcheteur(request.getParameter("pren"));
+                ach.setNomAcheteur(request.getParameter("nom"));
+                ach.setNoCarteCredit(request.getParameter("cred"));
+                ach.setMotPasseAcheteur(request.getParameter("passConf"));
+                
+                if(dao.create(ach))
+                {
+                    //Utilisateur inexistant creation
+                    //request.setAttribute("message", "Mot de passe incorrect.");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/payer.jsp");
+                    r.forward(request, response);
+                }
+                else{
+                    //Utilisateur inexistant creation
+                    //request.setAttribute("message", "Mot de passe incorrect.");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/panier.jsp");
+                    r.forward(request, response);
+                }
+
+            }
+            
+        /*try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -44,10 +103,8 @@ public class CreationCompte extends HttpServlet {
             out.println("<h1>Servlet CreationCompte at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/CreationCompte");  //redirection vers la servlet login
-            r.forward(request, response);
-            return;
-        }
+        }*/
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
