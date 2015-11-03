@@ -138,7 +138,7 @@ public class AcheteurDao extends Dao<Acheteur> {
                 ResultSet r = stm.executeQuery("SELECT courriel, motPasseAcheteur FROM acheteur WHERE courriel = '"+user+"' AND motPasseAcheteur ='"+password+"'" );
                 if (r.next())
                 {
-                       Acheteur c = new Acheteur(
+                        Acheteur c = new Acheteur(
                                r.getString("courriel"),
                                r.getString("motPasseAcheteur"));
                         r.close();

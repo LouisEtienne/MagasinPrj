@@ -44,10 +44,11 @@
 		<br><br>
 		Mot de passe:	<input type="password" name="pass" value="">
 		<br><br>
-                <br />
+		<input type="submit" value="Submit">                                
                 <input type="hidden" name="action" value="loginAcheteur" />
-		<input type="submit" value="Submit">
-		<br><br>
+		<br>
+                <a href="create.do?action=creerCpt">creer un Compte</a>                
+                <br>
         </form>
             <hr>
         <%
