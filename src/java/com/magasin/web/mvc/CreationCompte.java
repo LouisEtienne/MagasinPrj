@@ -7,6 +7,7 @@ package com.magasin.web.mvc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +44,9 @@ public class CreationCompte extends HttpServlet {
             out.println("<h1>Servlet CreationCompte at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/CreationCompte");  //redirection vers la servlet login
+            r.forward(request, response);
+            return;
         }
     }
 

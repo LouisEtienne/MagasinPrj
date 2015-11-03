@@ -47,7 +47,7 @@
 		<input type="submit" value="Submit">                                
                 <input type="hidden" name="action" value="loginAcheteur" />
 		<br>
-                <a href="create.do?action=creerCpt">creer un Compte</a>                
+                <a href="create.do?action=creerCompte">creer un Compte</a>                
                 <br>
         </form>
             <hr>

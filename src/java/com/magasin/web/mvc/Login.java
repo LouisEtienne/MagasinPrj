@@ -6,8 +6,10 @@
 package com.magasin.web.mvc;
 
 import com.magasin.entities.Acheteur;
+import com.magasin.entities.Administrateur;
 import com.magasin.jdbc.Connexion;
 import com.magasin.jdbc.dao.implementation.AcheteurDao;
+import com.magasin.jdbc.dao.implementation.AdministrateurDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -37,52 +39,98 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String  u = request.getParameter("mail"),
+        
+        String  u = request.getParameter("user"),
                 p = request.getParameter("pass");
-        if (u==null || u.trim().equalsIgnoreCase(""))
-        {
-            //Utilisateur inexistant
-            request.setAttribute("message", "Username obligatoire");
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
-            r.forward(request, response);
-            return;
-        }
+        if (request.getParameter("action").equals("loginAcheteur")){
+            if (u==null || u.trim().equalsIgnoreCase(""))
+            {
+                //Utilisateur inexistant
+                request.setAttribute("message", "Username obligatoire");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+                r.forward(request, response);
+                return;
+            }
 
-        try {
-            Class.forName(this.getServletContext().getInitParameter("piloteJdbc"));
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                Class.forName(this.getServletContext().getInitParameter("piloteJdbc"));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
+            AcheteurDao dao = new AcheteurDao(Connexion.getInstance());
+            Acheteur acheteur = dao.read(u.trim());
+
+            if (acheteur==null)
+            {
+                //Utilisateur inexistant
+                request.setAttribute("message", "Utilisateur "+u+" inexistant.");
+                //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+                r.forward(request, response);
+            }
+            else if (!acheteur.getMotPasseAcheteur().equals(p))
+            {
+                //Mot de passe incorrect
+                request.setAttribute("message", "Mot de passe incorrect.");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+                r.forward(request, response);
+            }
+            else
+            {
+                //connexion OK
+                HttpSession session = request.getSession(true);
+                session.setAttribute("connecte", u);
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+                r.forward(request, response);
+            }
         }
-        
-        Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
-        AcheteurDao dao = new AcheteurDao(Connexion.getInstance());
-        Acheteur acheteur = dao.read(u.trim());
-        
-        if (acheteur==null)
-        {
-            //Utilisateur inexistant
-            request.setAttribute("message", "Utilisateur "+u+" inexistant.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
-            r.forward(request, response);
-        }
-        else if (!acheteur.getMotPasseAcheteur().equals(p))
-        {
-            //Mot de passe incorrect
-            request.setAttribute("message", "Mot de passe incorrect.");
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
-            r.forward(request, response);
-        }
-        else
-        {
-            //connexion OK
-            HttpSession session = request.getSession(true);
-            session.setAttribute("connecte", u);
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-            r.forward(request, response);
-        }
+        if (request.getParameter("action").equals("loginAdmin")){
+                if (u==null || u.trim().equalsIgnoreCase(""))
+                {
+                    //Utilisateur inexistant
+                    request.setAttribute("message", "Username obligatoire");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+                    r.forward(request, response);
+                    return;
+                }
+
+                try {
+                    Class.forName(this.getServletContext().getInitParameter("piloteJdbc"));
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
+                AdministrateurDao dao = new AdministrateurDao(Connexion.getInstance());
+                Administrateur admin = dao.read(u.trim());
+
+                if (admin==null)
+                {
+                    //Utilisateur inexistant
+                    request.setAttribute("message", "Utilisateur "+u+" inexistant1.");
+                    //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+                    r.forward(request, response);
+                }
+                else if (!admin.getMotPasseAdministrateur().equals(p))
+                {
+                    //Mot de passe incorrect
+                    request.setAttribute("message", "Mot de passe incorrect.");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+                    r.forward(request, response);
+                }
+                else
+                {
+                    //connexion OK
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("connecte", u);
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+                    r.forward(request, response);
+                }
+            }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.

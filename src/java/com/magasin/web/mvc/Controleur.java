@@ -45,8 +45,13 @@ public class Controleur extends HttpServlet {
         
         if (action !=null)
         {
-        if ("loginAcheteur".equals(action))
-            {
+        if ("loginAcheteur".equals(action) || "loginAdmin".equals(action))
+            {                
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signin");  //redirection vers la servlet login
+                r.forward(request, response);
+                return;
+                
+                /*
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                 } catch (ClassNotFoundException ex) {
@@ -67,12 +72,12 @@ public class Controleur extends HttpServlet {
                     session.setAttribute("connecte",u);
                     RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
                     r.forward(request, response);
-                }
+                }*/
 
             }   
         if ("loginAdmin".equals(action))
             {
-                try {
+                /*try {
                     Class.forName("com.mysql.jdbc.Driver");
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,7 +97,7 @@ public class Controleur extends HttpServlet {
                     session.setAttribute("connecte",u);
                     RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
                     r.forward(request, response);
-                }
+                }*/
 
             }  
             if ("logout".equals(action))
@@ -100,7 +105,13 @@ public class Controleur extends HttpServlet {
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signout");  //redirection vers la servlet login
                 r.forward(request, response);
                 return;
-            }            
+            }
+            
+            if("creerCompte".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");  //redirection vers la servlet login
+                r.forward(request, response);
+                return;
+            }
             return;
         }
         

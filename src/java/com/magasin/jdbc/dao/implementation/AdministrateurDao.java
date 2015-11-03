@@ -117,14 +117,14 @@ public class AdministrateurDao extends Dao<Administrateur> {
 //            Statement stm = cnx.createStatement();
 //            ResultSet r = stm.executeQuery("SELECT * FROM user WHERE numId = '" + id + "'");
             //Avec requête paramétrée :
-            stm = cnx.prepareStatement("SELECT * FROM user WHERE codeAdministrateur = ?");
+            stm = cnx.prepareStatement("SELECT * FROM administrateur WHERE codeAdministrateur = ?");
             stm.setString(1,id);
             ResultSet r = stm.executeQuery();
             if (r.next()) {
                 //User c = new User(r.getString("numId"),r.getString("mdp"));
                 Administrateur c = new Administrateur();
-                c.setCodeAdministrateur(r.getString("courriel"));
-                c.setMotPasseAdministrateur(r.getString("motPasseAcheteur"));
+                c.setCodeAdministrateur(r.getString("codeAdministrateur"));
+                c.setMotPasseAdministrateur(r.getString("motPasseAdministrateur"));
                 r.close();
                 stm.close();
                 return c;
