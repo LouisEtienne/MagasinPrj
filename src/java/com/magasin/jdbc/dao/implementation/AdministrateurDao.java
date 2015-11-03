@@ -84,6 +84,30 @@ public class AdministrateurDao extends Dao<Administrateur> {
         }
         return false;
     }
+    
+    public boolean checkLogin(String c,String p) 
+	{
+            try 
+            {
+                Statement stm = null;
+                stm = cnx.createStatement(); 
+                ResultSet r = stm.executeQuery("SELECT codeAdministrateur, motPasseAdministrateur FROM administrateur WHERE codeAdministrateur = '"+ c +"' AND motPasseAdministrateur ='"+p+"'" );
+                if (r.next())
+                {
+                       Administrateur a = new Administrateur(
+                               r.getString("codeAdministrateur"),
+                               r.getString("motPasseAdministrateur"));
+                        r.close();
+                        stm.close();
+                        return true;
+                }
+            }
+            catch (SQLException exp)
+            {
+            }
+            return false;
+	}
+
 
     @Override
     public Administrateur read(String id) {

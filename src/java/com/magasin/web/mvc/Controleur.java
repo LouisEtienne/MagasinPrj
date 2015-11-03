@@ -5,14 +5,21 @@
  */
 package com.magasin.web.mvc;
 
+import com.magasin.jdbc.Connexion;
+import com.magasin.jdbc.dao.implementation.AcheteurDao;
+import com.magasin.jdbc.dao.implementation.AdministrateurDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,14 +40,61 @@ public class Controleur extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        String u = request.getParameter("user"),
+               p = request.getParameter("pass");
+        
         if (action !=null)
         {
-            if ("loginAcheteur".equals(action))
+        if ("loginAcheteur".equals(action))
             {
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/Login");  //redirection vers la servlet login
-                r.forward(request, response);     
-                return;
-            }            
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
+                Connection cnx = Connexion.getInstance();
+                AcheteurDao dao = new AcheteurDao(cnx);
+                if (!dao.checkLogin(u,p))
+                {
+                    request.setAttribute("message", "Courriel et/ou mot de passe erroné(s)");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+                    r.forward(request, response);
+                    return;
+                } else {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("connecte",u);
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+                    r.forward(request, response);
+                }
+
+            }   
+        if ("loginAdmin".equals(action))
+            {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
+                Connection cnx = Connexion.getInstance();
+                AdministrateurDao dao = new AdministrateurDao(cnx);
+                if (!dao.checkLogin(u,p))
+                {
+                    request.setAttribute("messageAdmin", "Code et/ou mot de passe erroné(s)");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+                    r.forward(request, response);
+                    return;
+                } else {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("connecte",u);
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+                    r.forward(request, response);
+                }
+
+            }  
             if ("logout".equals(action))
             {
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signout");  //redirection vers la servlet login
@@ -49,33 +103,6 @@ public class Controleur extends HttpServlet {
             }            
             return;
         }
-        String  
-                op = request.getParameter("operation");
-        String msg = null;
-        
-          char oper;
-          if (op!=null && op.length()>0)
-              oper = op.charAt(0);
-          else
-              oper = ' ';
-          RequestDispatcher r = null;
-          switch (oper)
-          {
-              case 'c' :
-                  //forward vers la servlet Addition :
-                    r = this.getServletContext().getNamedDispatcher("creationCompte");
-                    break;
-              case 'm' :
-                  //forward vers la servlet Soustraction :
-                    r = this.getServletContext().getNamedDispatcher("modificationCompte");
-                    break;
-              default :
-                    msg = "Choix "+oper+" inconnue";
-                    request.setAttribute("message", msg);
-                    //forward vers la page index.jsp :
-                    r = this.getServletContext().getRequestDispatcher("/index.jsp");
-          }
-          r.forward(request, response);
         
     }
 

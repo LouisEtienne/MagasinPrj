@@ -28,7 +28,8 @@
     </head>
     <body>
         <h1>Connexion</h1>
-        <%
+        <div id="form">
+         <%
         if (request.getAttribute("message")!=null)
         {
             out.println("<span class=\"errorMessage\">"+request.getAttribute("message")+"</span>");
@@ -37,24 +38,29 @@
         if (us1==null) us1="";
         else us1 = us1.trim();
         %>
-        <div id="form">
             <form action="login.do" >
-                <input type="hidden" name="action" value="loginAcheteur" />
                 <h3>Client</h3>
-		Adresse Email: <input type="text" name="mail">
+		Adresse Email: <input type="text" name="user" value="">
 		<br><br>
-		Mot de passe:	<input type="password" name="pass">
+		Mot de passe:	<input type="password" name="pass" value="">
 		<br><br>
                 <br />
+                <input type="hidden" name="action" value="loginAcheteur" />
 		<input type="submit" value="Submit">
 		<br><br>
         </form>
             <hr>
+        <%
+        if (request.getAttribute("messageAdmin")!=null)
+        {
+            out.println("<span class=\"errorMessage\">"+request.getAttribute("messageAdmin")+"</span>");
+        }
+        %>
         <form action="Ctrl.do" >
             <h3>Administrateur</h3>
-		code Administrateur: <input type="text" name="aCode">
+            code Administrateur: <input type="text" name="user" value="">
 		<br><br>
-		Mot de passe:	<input type="password" name="pass">
+                Mot de passe:	<input type="password" name="pass" value="">
 		<br><br>
                 <input type="hidden" name="action" value="loginAdmin" /><br />
 		<input type="submit" value="Submit">

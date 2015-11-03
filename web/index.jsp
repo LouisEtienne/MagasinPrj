@@ -56,7 +56,7 @@
             </select>
            
             <input type="submit" value=" Submit " />
-            <jsp:include page = "" flush = "true"/>
+            <%--<jsp:include page = "" flush = "true"/>--%>
             
         <%
         //if (request.getAttribute("resultat")!=null)

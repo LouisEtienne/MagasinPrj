@@ -32,8 +32,9 @@ public class Logout extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //déconnexion
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         session.removeAttribute("connecte");
+        session.invalidate();
         RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
         r.forward(request, response);
     }

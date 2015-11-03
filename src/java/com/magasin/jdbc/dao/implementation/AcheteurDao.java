@@ -94,14 +94,23 @@ public class AcheteurDao extends Dao<Acheteur> {
 //            Statement stm = cnx.createStatement();
 //            ResultSet r = stm.executeQuery("SELECT * FROM user WHERE numId = '" + id + "'");
             //Avec requête paramétrée :
-            stm = cnx.prepareStatement("SELECT * FROM user WHERE courriel = ?");
-            stm.setString(1,cour);
+            stm = cnx.prepareStatement("SELECT * FROM acheteur WHERE courriel ='" + cour +"'");
+            //stm.setString(1,cour);
             ResultSet r = stm.executeQuery();
             if (r.next()) {
                 //User c = new User(r.getString("numId"),r.getString("mdp"));
                 Acheteur c = new Acheteur();
                 c.setCourriel(r.getString("courriel"));
                 c.setMotPasseAcheteur(r.getString("motPasseAcheteur"));
+                c.setNoCarteCredit(r.getString("noCarteCredit"));
+                c.setNomAcheteur(r.getString("nomAcheteur"));
+                c.setAdresse(r.getString("adresse"));
+                c.setVille(r.getString("ville"));
+                c.setProvince(r.getString("province"));
+                c.setCodePostal(r.getString("codePostal"));
+                c.setTelephonePrincipal(r.getString("telephonePrincipal"));
+                c.setTelephoneSecondaire(r.getString("telephoneSecondaire"));
+                c.setCompteActif(r.getBoolean("compteActif"));
                 r.close();
                 stm.close();
                 return c;
@@ -119,13 +128,37 @@ public class AcheteurDao extends Dao<Acheteur> {
         }
         return null;
     }
+    
+    public boolean checkLogin(String user,String password) 
+	{
+            try 
+            {
+                Statement stm = null;
+                stm = cnx.createStatement(); 
+                ResultSet r = stm.executeQuery("SELECT courriel, motPasseAcheteur FROM acheteur WHERE courriel = '"+user+"' AND motPasseAcheteur ='"+password+"'" );
+                if (r.next())
+                {
+                       Acheteur c = new Acheteur(
+                               r.getString("courriel"),
+                               r.getString("motPasseAcheteur"));
+                        r.close();
+                        stm.close();
+                        return true;
+                }
+            }
+            catch (SQLException exp)
+            {
+            }
+            return false;
+	}
+
 
     @Override
     public boolean update(Acheteur x) {
         // TODO Auto-generated method stub
         Statement stm = null;
         try {
-            String req = "UPDATE user SET motPasseAcheteur = '" + x.getMotPasseAcheteur() + "'"
+            String req = "UPDATE acheteur SET motPasseAcheteur = '" + x.getMotPasseAcheteur() + "'"
                     + " WHERE courriel = '" + x.getCourriel() + "'";
             //System.out.println("REQUETE "+req);
             stm = cnx.createStatement();
