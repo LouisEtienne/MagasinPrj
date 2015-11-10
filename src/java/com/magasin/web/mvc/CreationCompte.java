@@ -52,16 +52,22 @@ public class CreationCompte extends HttpServlet {
         AcheteurDao dao = new AcheteurDao(Connexion.getInstance());
         Acheteur ach = dao.read(request.getParameter("courr").trim());
 
-            if (ach!=null)
+            if (ach!=null || request.getParameter("courr").equals("admin") 
+                    || request.getParameter("courr").equals(""))
             {
-                //Utilisateur existant
-                request.setAttribute("message", "Utilisateur "+ach.getNomAcheteur()+" déja existant.");
-                //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-                r.forward(request, response);
-            }
-            else
-            {
+                    //Utilisateur existant
+                    //request.setAttribute("message", "Utilisateur "+ach.getNomAcheteur()+" déja existant.");
+                    request.setAttribute("message", "Utilisateur avec l'adresse \'"+request.getParameter("courr")+ "' déja existant.");
+                    //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");
+                    r.forward(request, response);
+
+            }else if (!request.getParameter("pass").equals(request.getParameter("passConf"))){
+                    request.setAttribute("message", "les deux mots de passe ne sont pas semblables");
+                    //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");
+                    r.forward(request, response);
+            }else{
                 ach = new Acheteur();
                 ach.setAdresse(request.getParameter("adre"));
                 ach.setCodePostal(request.getParameter("cPos"));
