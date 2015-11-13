@@ -71,6 +71,11 @@ public class Controleur extends HttpServlet {
                 r.forward(request, response);
                 return;
             }
+            if("compteCree".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/CreationCompte");  //redirection vers la servlet login
+                r.forward(request, response);
+                return;
+            }
             
         if("modifierCompte".equals(action)){
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/MAJcompte");  //redirection vers le formulaire de mise à jour du compte

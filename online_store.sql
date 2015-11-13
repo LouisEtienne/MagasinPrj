@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 23 Octobre 2015 à 12:45
+-- Généré le :  Ven 13 Novembre 2015 à 13:39
 -- Version du serveur :  5.6.20-log
 -- Version de PHP :  5.4.31
 
@@ -46,7 +46,11 @@ CREATE TABLE IF NOT EXISTS `acheteur` (
 --
 
 INSERT INTO `acheteur` (`courriel`, `motPasseAcheteur`, `noCarteCredit`, `nomAcheteur`, `prenomAcheteur`, `adresse`, `ville`, `province`, `codePostal`, `telephonePrincipal`, `telephoneSecondaire`, `compteActif`) VALUES
-('louis.etienne.lemire@gmail.com', 'diffusio13', '4540162030406790', 'Lemire', 'Louis', '6140 Duquesne', 'Montréal', 'Québec', 'H1M2K5', '514-706-2061', '438-763-2413', 1);
+('louis.etienne.lemire@gmail.com', 'diffusio13', '4540162030406790', 'Lemire', 'Louis', '6140 Duquesne', 'Montréal', 'Québec', 'H1M2K5', '514-706-2061', '438-763-2413', 1),
+('test', 'test', '12345678', 'test', 'test', 'test', 'test', 'test', 'test', '12345667', '', 0),
+('abc', 'null', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'null', 1),
+('qwerty', 'null', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'null', 1),
+('sup', 'null', '', '', '', '', '', '', '', '', 'null', 1);
 
 -- --------------------------------------------------------
 
@@ -66,7 +70,22 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 --
 
 INSERT INTO `administrateur` (`codeAdministrateur`, `motPasseAdministrateur`, `nomAdministrateur`, `prenomAdministrateur`) VALUES
-('1234', 'admin', 'Plamondon', 'Michel');
+('admin', 'admin', 'Plamondon', 'Michel');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produit`
+--
+
+CREATE TABLE IF NOT EXISTS `produit` (
+  `codeProduit` varchar(200) NOT NULL,
+  `codeBarre` varchar(200) NOT NULL,
+  `nomProduit` varchar(200) NOT NULL,
+  `categorieProduit` varchar(200) NOT NULL,
+  `prixProduit` varchar(3) NOT NULL,
+  `quantite` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Index pour les tables exportées
@@ -83,6 +102,12 @@ ALTER TABLE `acheteur`
 --
 ALTER TABLE `administrateur`
  ADD PRIMARY KEY (`codeAdministrateur`);
+
+--
+-- Index pour la table `produit`
+--
+ALTER TABLE `produit`
+ ADD PRIMARY KEY (`codeProduit`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
