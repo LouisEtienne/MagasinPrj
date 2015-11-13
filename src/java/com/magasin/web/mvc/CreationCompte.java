@@ -10,17 +10,21 @@ import com.magasin.jdbc.Connexion;
 import com.magasin.jdbc.dao.implementation.AcheteurDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author usager
  */
-@WebServlet(name = "CreationCompte", urlPatterns = {"/creationCompte"})
+@WebServlet(name = "CreationCompte", urlPatterns = {"/CreationCompte"})
 public class CreationCompte extends HttpServlet {
 
     /**
@@ -35,20 +39,6 @@ public class CreationCompte extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*                  
-        request.getParameter("courr");
-        request.getParameter("pass");                    
-        request.getParameter("passConf");
-        request.getParameter("nom");        
-        request.getParameter("pren");
-        request.getParameter("adre");        
-        request.getParameter("phone");
-        request.getParameter("phone2");
-        request.getParameter("ville");
-        request.getParameter("pro");      
-        request.getParameter("cPos");
-        request.getParameter("cred");          
-        */
         Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
         AcheteurDao dao = new AcheteurDao(Connexion.getInstance());
         Acheteur ach = dao.read(request.getParameter("courr").trim());
@@ -60,40 +50,65 @@ public class CreationCompte extends HttpServlet {
                     //request.setAttribute("message", "Utilisateur "+ach.getNomAcheteur()+" déja existant.");
                     request.setAttribute("message", "Utilisateur avec l'adresse \'"+request.getParameter("courr")+ "' déja existant.");
                     //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=creerCompte");
                     r.forward(request, response);
 
             }else if (!request.getParameter("pass").equals(request.getParameter("passConf"))){
                     request.setAttribute("message", "les deux mots de passe ne sont pas semblables");
                     //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=creerCompte");
                     r.forward(request, response);
             }else{
+                String adresse =request.getParameter("adre");
+                String codePostal= request.getParameter("cPos");
+                int compteActif = 1;
+                String courriel =request.getParameter("courr");
+                String ville = request.getParameter("ville");
+                String telPrincipal = request.getParameter("phone");
+                String telSecondaire = request.getParameter("phone2");
+                String province = request.getParameter("pro");
+                String prenom = request.getParameter("pren");
+                String nom = request.getParameter("nom");
+                String numero = request.getParameter("cred");
+                String motDePasse = request.getParameter("pass");
+                        
                 ach = new Acheteur();
-                ach.setAdresse(request.getParameter("adre"));
-                ach.setCodePostal(request.getParameter("cPos"));
-                ach.setCompteActif(true);
-                ach.setCourriel(request.getParameter("courr"));
-                ach.setVille(request.getParameter("ville"));
-                ach.setTelephoneSecondaire(request.getParameter("phone2"));
-                ach.setTelephonePrincipal(request.getParameter("phone"));
-                ach.setProvince(request.getParameter("pro"));
-                ach.setPrenomAcheteur(request.getParameter("pren"));
-                ach.setNomAcheteur(request.getParameter("nom"));
-                ach.setNoCarteCredit(request.getParameter("cred"));
-                ach.setMotPasseAcheteur(request.getParameter("passConf"));
+                ach.setAdresse(adresse);
+                ach.setCodePostal(codePostal);
+                ach.setCompteActif(compteActif);
+                ach.setCourriel(courriel);
+                ach.setVille(ville);
+                ach.setTelephoneSecondaire(telSecondaire);
+                ach.setTelephonePrincipal(telPrincipal);
+                ach.setProvince(province);
+                ach.setPrenomAcheteur(prenom);
+                ach.setNomAcheteur(nom);
+                ach.setNoCarteCredit(numero);
+                ach.setMotPasseAcheteur(motDePasse);
                 
                 if(dao.create(ach))
                 {
+                    try {
+                    Class.forName(this.getServletContext().getInitParameter("piloteJdbc"));
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(CreationCompte.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Acheteur acheteur = dao.read(courriel.trim());
+                    Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("connecte", courriel);
+                    session.setAttribute(("acheteur"), acheteur);
+
+            
                     //Utilisateur inexistant creation
                     //request.setAttribute("message", "Mot de passe incorrect.");
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/payer.jsp");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
                     r.forward(request, response);
                 }
                 else{
                     //Utilisateur inexistant creation
-                    //request.setAttribute("message", "Mot de passe incorrect.");
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/panier.jsp");
+                    request.setAttribute("message", "Utilisateur existant.");
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=creerCompte");
                     r.forward(request, response);
                 }
 

@@ -57,7 +57,7 @@
             out.println("<span class=\"errorMessage\">"+request.getAttribute("messageAdmin")+"</span>");
         }
         %>
-        <form action="Ctrl.do" >
+        <form action="ctrl.do" >
             <h3>Administrateur</h3>
             code Administrateur: <input type="text" name="user" value="">
 		<br><br>

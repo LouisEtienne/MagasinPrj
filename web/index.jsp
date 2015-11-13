@@ -6,7 +6,7 @@
 
 <%@page import="com.magasin.entities.Acheteur"%>
 <%
-    if (session.getAttribute("connecte")==null)  //déjà connecté
+    if (session.getAttribute("connecte")==null)  // connecté
     {
 %>
         <jsp:forward page="login.jsp" />
@@ -80,7 +80,7 @@
         <%
         //if (request.getAttribute("resultat")!=null)
        // {
-        ;
+        
             
         //    out.println("<span class=\"resultat\">"+request.getAttribute("resultat")+"</span>");
         //}

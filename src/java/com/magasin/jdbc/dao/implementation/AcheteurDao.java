@@ -68,42 +68,66 @@ public class AcheteurDao extends Dao<Acheteur> {
             // TODO Auto-generated method stub
 
             //String req = "INSERT INTO acheteur (`numId` , `mdp`) "
-            String req = "INSERT INTO acheteur(`courriel`, `motPasseAcheteur`, `noCarteCredit`, `nomAcheteur`, `prenomAcheteur`, `adresse`, `ville`, `province`, `codePostal`, `telephonePrincipal`, `telephoneSecondaire`, `compteActif`)"
-                    + "VALUES ('" + x.getCourriel() + "','" + x.getMotPasseAcheteur() + "','" + x.getNoCarteCredit() + "','" + x.getNomAcheteur() + "','" + x.getPrenomAcheteur() + 
-                    "','" + x.getAdresse() + "','" + x.getVille() + "','" + x.getProvince() + "','" + x.getCodePostal() + "','" + x.getTelephonePrincipal() + "'"
-                    + ",'" + x.getTelephoneSecondaire() + "','"+1+ "')";
-
-            String reqe = "INSERT INTO acheteur (`courriel`,`motPasseAcheteur`, `noCarteCredit`)"+ 
-                    " VALUES ('" + x.getAdresse()+ "','" + x.getMotPasseAcheteur()+"','" + x.getNoCarteCredit()+"')";
-
-            //System.out.println("REQUETE "+req);
-
+            String req = "INSERT INTO acheteur(`courriel`, `motPasseAcheteur`, `noCarteCredit`, `nomAcheteur`, `prenomAcheteur`, `adresse`, `ville`, `province`, `codePostal`, `telephonePrincipal`, `telephoneSecondaire`, `compteActif`)"+
+                     "VALUES ('" + x.getCourriel() + "','" + x.getMotPasseAcheteur() + "','" + x.getNoCarteCredit() + "','" + x.getNomAcheteur() + "','" + x.getPrenomAcheteur() + 
+                    "','" + x.getAdresse() + "','" + x.getVille() + "','" + x.getProvince() + "','" + x.getCodePostal() + "','" + x.getTelephonePrincipal() + "','" + x.getTelephoneSecondaire() + "','"+1+ "')";
             Statement stm = null;
-            try {
-                stm = cnx.createStatement(); 
-                
-                int n = stm.executeUpdate(req);
-                
-                if (n > 0) {
-                    stm.close();
-                    return true;
-                }
-            } 
-            catch (SQLException exp) {
-                exp.printStackTrace();
-            } finally {
-                if (stm != null) {
-                    try {
-                        stm.close();
-                    } catch (SQLException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            return false;
+		try 
+		{
+			stm = cnx.createStatement(); 
+			int n= stm.executeUpdate(req);
+			if (n>0)
+			{
+				stm.close();
+				return true;
+			}
+		}
+		catch (SQLException exp)
+		{
+		}
+		finally
+		{
+			if (stm!=null)
+			try {
+				stm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+		return false;
         }
+        
+//        public boolean createModel(Acheteur x) {
+//		String req = "INSERT INTO membre (`nom` , `motDePasse` , `courriel`) "+
+//				"VALUES ('"+x.getNom()+"','"+x.getMotDePasse()+"','"+x.getCourriel()+"')";
+//		Statement stm = null;
+//		try 
+//		{
+//			stm = cnx.createStatement(); 
+//			int n= stm.executeUpdate(req);
+//			if (n>0)
+//			{
+//				stm.close();
+//				return true;
+//			}
+//		}
+//		catch (SQLException exp)
+//		{
+//		}
+//		finally
+//		{
+//			if (stm!=null)
+//			try {
+//				stm.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}			
+//		}
+//		return false;
+//	}
+
 
     @Override
     public boolean delete(Acheteur x) {
