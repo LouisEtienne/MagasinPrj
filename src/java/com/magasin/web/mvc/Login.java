@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Louis
  */
-//@WebServlet(name = "login", urlPatterns = {"/signin"})
+@WebServlet(name = "Login", urlPatterns = {"/signin"})
 public class Login extends HttpServlet {
 
     /** 
@@ -82,6 +82,7 @@ public class Login extends HttpServlet {
                 //connexion OK
                 HttpSession session = request.getSession(true);
                 session.setAttribute("connecte", u);
+                session.setAttribute(("acheteur"), acheteur);
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
                 r.forward(request, response);
             }
@@ -125,7 +126,7 @@ public class Login extends HttpServlet {
                 {
                     //connexion OK
                     HttpSession session = request.getSession(true);
-                    session.setAttribute("connecte", u);
+                    session.setAttribute("connecte", admin);
                     RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
                     r.forward(request, response);
                 }

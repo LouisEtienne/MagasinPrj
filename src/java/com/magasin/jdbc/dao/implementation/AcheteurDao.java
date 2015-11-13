@@ -87,15 +87,15 @@ public class AcheteurDao extends Dao<Acheteur> {
     }
 
     @Override
-    public Acheteur read(String cour) {
+    public Acheteur read(String courriel) {
         // TODO Auto-generated method stub
         PreparedStatement stm = null;
         try {
 //            Statement stm = cnx.createStatement();
 //            ResultSet r = stm.executeQuery("SELECT * FROM user WHERE numId = '" + id + "'");
             //Avec requête paramétrée :
-            stm = cnx.prepareStatement("SELECT * FROM acheteur WHERE courriel ='" + cour +"'");
-            //stm.setString(1,cour);
+            stm = cnx.prepareStatement("SELECT * FROM acheteur WHERE courriel = ? ");
+            stm.setString(1,courriel);
             ResultSet r = stm.executeQuery();
             if (r.next()) {
                 //User c = new User(r.getString("numId"),r.getString("mdp"));
@@ -104,13 +104,14 @@ public class AcheteurDao extends Dao<Acheteur> {
                 c.setMotPasseAcheteur(r.getString("motPasseAcheteur"));
                 c.setNoCarteCredit(r.getString("noCarteCredit"));
                 c.setNomAcheteur(r.getString("nomAcheteur"));
+                c.setPrenomAcheteur(r.getString("prenomAcheteur"));
                 c.setAdresse(r.getString("adresse"));
                 c.setVille(r.getString("ville"));
                 c.setProvince(r.getString("province"));
                 c.setCodePostal(r.getString("codePostal"));
                 c.setTelephonePrincipal(r.getString("telephonePrincipal"));
                 c.setTelephoneSecondaire(r.getString("telephoneSecondaire"));
-                c.setCompteActif(r.getBoolean("compteActif"));
+                c.setCompteActif(r.getInt("compteActif"));
                 r.close();
                 stm.close();
                 return c;
@@ -158,8 +159,11 @@ public class AcheteurDao extends Dao<Acheteur> {
         // TODO Auto-generated method stub
         Statement stm = null;
         try {
-            String req = "UPDATE acheteur SET motPasseAcheteur = '" + x.getMotPasseAcheteur() + "'"
-                    + " WHERE courriel = '" + x.getCourriel() + "'";
+            String req = "UPDATE acheteur SET motPasseAcheteur = '" + x.getMotPasseAcheteur() + "',noCarteCredit = '" + x.getNoCarteCredit() + 
+                    "',nomAcheteur = '" + x.getNomAcheteur() + "',prenomAcheteur = '" + x.getPrenomAcheteur() + "',adresse = '" + x.getAdresse() + 
+                    "',ville = '" + x.getVille() + "',province = '" + x.getProvince() + "',codePostal = '" + x.getCodePostal() + 
+                    "',telephonePrincipal = '" + x.getTelephonePrincipal() + "',telephoneSecondaire = '" + x.getTelephoneSecondaire() + 
+                    "',compteActif = '" + x.isCompteActif() + "' WHERE courriel = '" + x.getCourriel() + "'";
             //System.out.println("REQUETE "+req);
             stm = cnx.createStatement();
             int n = stm.executeUpdate(req);
@@ -199,4 +203,5 @@ public class AcheteurDao extends Dao<Acheteur> {
         }
         return liste;
     }
+    
 }

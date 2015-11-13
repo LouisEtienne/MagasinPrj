@@ -13,7 +13,7 @@ public class Acheteur {
     
     private String courriel, motPasseAcheteur, noCarteCredit, nomAcheteur, prenomAcheteur,
                     adresse, ville, province, codePostal, telephonePrincipal, telephoneSecondaire;
-    private boolean compteActif;
+    private int compteActif;
 
     public Acheteur(String courriel, String motPasseAcheteur) {
         this.courriel = courriel;
@@ -32,13 +32,13 @@ public class Acheteur {
         this.codePostal = "";
         this.telephonePrincipal = "";
         this.telephoneSecondaire = "";
-        this.compteActif = true;
+        this.compteActif = 1;
         
     }
 
     public Acheteur(String courriel, String motPasseAcheteur, String noCarteCredit, String nomAcheteur, String prenomAcheteur,
                     String adresse, String ville, String province, String codePostal, String telephonePrincipal, String telephoneSecondaire,
-                    boolean compteActif) {
+                    int compteActif) {
         this.courriel = courriel;
         this.motPasseAcheteur = motPasseAcheteur;
         this.noCarteCredit = noCarteCredit;
@@ -141,11 +141,11 @@ public class Acheteur {
         this.telephoneSecondaire = telephoneSecondaire;
     }
 
-    public boolean isCompteActif() {
+    public int isCompteActif() {
         return compteActif;
     }
 
-    public void setCompteActif(boolean compteActif) {
+    public void setCompteActif(int compteActif) {
         this.compteActif = compteActif;
     }
 

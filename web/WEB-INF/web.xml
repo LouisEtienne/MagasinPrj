@@ -10,49 +10,9 @@
         <param-name>urlBd</param-name>
         <param-value>jdbc:mysql://localhost/online_store?user=root&amp;password=root</param-value>
     </context-param>
-     <welcome-file-list>
+    <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
-    <servlet>
-        <servlet-name>Controleur</servlet-name>
-        <servlet-class>com.magasin.web.mvc.Controleur</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>com.magasin.web.mvc.Login</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>com.magasin.web.mvc.Logout</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ModificationCompte</servlet-name>
-        <servlet-class>com.magasin.web.mvc.ModificationCompte</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreationCompte</servlet-name>
-        <servlet-class>com.magasin.web.mvc.CreationCompte</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Controleur</servlet-name>
-        <url-pattern>*.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/signin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/signout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ModificationCompte</servlet-name>
-        <url-pattern>/ModificationCompte</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreationCompte</servlet-name>
-        <url-pattern>/CreationCompte</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

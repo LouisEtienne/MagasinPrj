@@ -4,6 +4,7 @@
     Author     : Louis-Étienne Lemire
 --%>
 
+<%@page import="com.magasin.entities.Acheteur"%>
 <%
     if (session.getAttribute("connecte")==null)  //déjà connecté
     {
@@ -28,12 +29,11 @@
 <%        
         if (session.getAttribute("connecte")!=null)
         {
-            out.println("<p class=\"resultat\">"+session.getAttribute("connecte")+", vous êtes connectés. "+
+            out.println("<p class=\"resultat\">"+(((Acheteur) request.getSession().getAttribute("acheteur")).getCourriel())+", vous êtes connectés. "+
                         "<a href=\"logout.do?action=logout\">déconnexion</a></p>");
 
         }        
 %>
-        <h1>MVC</h1>
         <%
         if (request.getAttribute("message")!=null)
         {
@@ -47,25 +47,45 @@
        // if (ns2==null) ns2="";
         
         %>
-        <form action="abc.do" method="post">
+                        <div id="centre">
+                            <%
+                                String vue = request.getParameter("vue");
+                                if (vue==null)
+                                    vue = (String)request.getAttribute("vue");
+                                if (vue != null) 
+                                {
+                                    vue = vue+".jsp";                    
+                            %>
+                            <jsp:include page="<%=vue%>" />
+                            <%                    
+                                }
+                                else
+                                {
+                            %>
+                            <h1>Vous êtes à la vue par défaut</h1>
+                            <ul class="box">
+                                <li><a href="ctrl.do?action=">Gestion de panier</a></li>  
+                                <li><a href="ctrl.do?action=modifierCompte">Modification de compte</a></li>                        
+                            </ul>
+                            <%
+                                }
+                            %>
+                        </div>
             
-            <select name="operation">
-                <option value="">--choisir--</option>
-                <option value="création de compte" <%="+".equals(ops)?selected:""%>>+</option>
-                <option value="modification de compte" <%="-".equals(ops)?selected:""%>>-</option>
-            </select>
+            
            
-            <input type="submit" value=" Submit " />
+            
             <%--<jsp:include page = "" flush = "true"/>--%>
             
         <%
         //if (request.getAttribute("resultat")!=null)
        // {
-            //double x = ((Double)request.getAttribute("resultat")).doubleValue();
+        ;
+            
         //    out.println("<span class=\"resultat\">"+request.getAttribute("resultat")+"</span>");
         //}
         %>
-        </form>
+        
         
     </body>
 </html>

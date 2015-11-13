@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Louis
  */
-//@WebServlet(name = "Controleur", urlPatterns = {"/Controleur"})
+@WebServlet(name = "Controleur", urlPatterns = {"*.do"})
 public class Controleur extends HttpServlet {
     /**
      * Processes requests for both HTTP
@@ -45,73 +45,51 @@ public class Controleur extends HttpServlet {
         
         if (action !=null)
         {
-        if ("loginAcheteur".equals(action) || "loginAdmin".equals(action))
+        if ("loginAcheteur".equals(action))
             {                
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signin");  //redirection vers la servlet login
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signin");  //redirection vers la servlet de connexion Acheteur
                 r.forward(request, response);
-                return;
-                
-                /*
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
-                Connection cnx = Connexion.getInstance();
-                AcheteurDao dao = new AcheteurDao(cnx);
-                if (!dao.checkLogin(u,p))
-                {
-                    request.setAttribute("message", "Courriel et/ou mot de passe erroné(s)");
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
-                    r.forward(request, response);
-                    return;
-                } else {
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("connecte",u);
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-                    r.forward(request, response);
-                }*/
-
-            }   
+                return;         
+            } 
+        
         if ("loginAdmin".equals(action))
             {
-                /*try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
-                Connection cnx = Connexion.getInstance();
-                AdministrateurDao dao = new AdministrateurDao(cnx);
-                if (!dao.checkLogin(u,p))
-                {
-                    request.setAttribute("messageAdmin", "Code et/ou mot de passe erroné(s)");
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
-                    r.forward(request, response);
-                    return;
-                } else {
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("connecte",u);
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-                    r.forward(request, response);
-                }*/
-
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signin");  //redirection vers la servlet de connexion Admin
+                r.forward(request, response);
+                return;
             }  
-            if ("logout".equals(action))
+        
+        if ("logout".equals(action))
             {
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signout");  //redirection vers la servlet login
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signout");  //redirection vers la déconnexion
                 r.forward(request, response);
                 return;
             }
             
-            if("creerCompte".equals(action)){
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");  //redirection vers la servlet login
+        if("creerCompte".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");  //redirection vers la servlet création de compte
                 r.forward(request, response);
                 return;
             }
+            
+        if("modifierCompte".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/MAJcompte");  //redirection vers le formulaire de mise à jour du compte
+                r.forward(request, response);
+                return;
+            }
+            
+        if("compteModifie".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/ModifierCompte");  //redirection vers la servlet modifier compte
+                r.forward(request, response);
+                return;
+            }
+        
+         if ("annulation".equals(action))
+            {                
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");  //redirection vers l'index
+                r.forward(request, response);
+                return;         
+            }     
             return;
         }
         
