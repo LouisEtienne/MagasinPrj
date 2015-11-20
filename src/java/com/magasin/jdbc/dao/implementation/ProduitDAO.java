@@ -71,10 +71,10 @@ public class ProduitDAO extends Dao<Produit>{
             if (r.next()) {
                 //User c = new User(r.getString("numId"),r.getString("mdp"));
                 Produit p = new Produit();
-                p.setCategorie(r.getString("categoriePrix"));
+                p.setCategorie(r.getString("categorieProduit"));
                 p.setCodeBarre(r.getString("codeBarre"));
                 p.setCodeProduit(r.getString("codeProduit"));
-                p.setNom("nomProduit");
+                p.setNom(r.getString("nomProduit"));
                 p.setPrix(r.getString("prixProduit"));
                 p.setQantite(r.getString("quantite"));                
                 r.close();
@@ -129,7 +129,7 @@ public class ProduitDAO extends Dao<Produit>{
         Statement stm = null;
         try {
             stm = cnx.createStatement();
-            int n = stm.executeUpdate("DELETE FROM user WHERE codeProduit='" + x.getCodeProduit() + "'");
+            int n = stm.executeUpdate("DELETE FROM produit WHERE codeProduit='" + x.getCodeProduit() + "'");
             if (n > 0) {
                 stm.close();
                 return true;
@@ -155,8 +155,14 @@ public class ProduitDAO extends Dao<Produit>{
             Statement stm = cnx.createStatement();
             ResultSet r = stm.executeQuery("SELECT * FROM produit");
             while (r.next()) {
-                Produit c = new Produit();//a faire
-                liste.add(c);
+                Produit p = new Produit();//a faire
+                p.setCategorie(r.getString("categorieProduit"));
+                p.setCodeBarre(r.getString("codeBarre"));
+                p.setCodeProduit(r.getString("codeProduit"));
+                p.setNom(r.getString("nomProduit"));
+                p.setPrix(r.getString("prixProduit"));
+                p.setQantite(r.getString("quantite"));
+                liste.add(p);
             }
             r.close();
             stm.close();

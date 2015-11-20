@@ -88,8 +88,22 @@ public class Controleur extends HttpServlet {
                 r.forward(request, response);
                 return;
             }
-        
-         if ("annulation".equals(action))
+         
+            if("ajouterProd".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/AjouterProduit");  //redirection vers la servlet login
+                r.forward(request, response);
+                return;
+            }
+            if("supProd".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/SupprimerProduit");  //redirection vers la servlet modifier compte
+                r.forward(request, response);
+                return;
+            }        
+            if("modProd".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/MAJproduit");  //redirection vers la servlet modifier compte
+                r.forward(request, response);
+                return;
+            }         if ("annulation".equals(action))
             {                
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");  //redirection vers l'index
                 r.forward(request, response);

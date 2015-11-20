@@ -2,20 +2,40 @@
 <html>
 <head>
 <title>Ajouter Produit</title>
+        <style type="text/css">
+            .errorMessage {color : red;}
+            .resultat {font-weight: bold;}
+        </style>
 </head>
 <body>
 
 	<h1>Ajouter Produit</h1>
-	nom du production: <input type="text"><br><br>
-	prix: <input type="number" min=0 step=0.1>  $<br><br>
-	quantitÃ©: <input type="number" min=0 ><br><br>
-	description: <textarea placeholder="description du produit"></textarea><br><br>
-	type :	<select>
-				<option>type 1</option>
-				<option>type 2</option>
-				<option>type 3</option>
-		</select><br><br>
-		<input type="button" value="ajouter"></input>
-		<input type="button" value="annuler"></input>
+        <%
+        if (request.getAttribute("message")!=null)
+        {
+            out.println("<span class=\"errorMessage\">"+request.getAttribute("message")+"</span>");
+        }
+        %>
+        <form action="ajtProd.do">
+            code du production (4lettres 6chiffre): <input name="codeP" type="text" pattern=".{10,10}" 
+                required title="10 caractères" value="<%=(request.getParameter("codeP")==null)?"":request.getParameter("codeP")%>"><br><br>
+            code barre du production: <input name="codeBarreP" type="text" pattern=".{12,13}" 
+                                             required title="12 a 13 caractères" value="<%=(request.getParameter("codeBarreP")==null)?"":request.getParameter("codeBarreP")%>"><br><br>
+            nom du production: <input name="nomP" type="text" 
+            required ><br><br>
+            prix: <input name="prixP" type="number" min=0 step=0.1 required value="<%=(request.getParameter("prixP")==null)?"":request.getParameter("prixP")%>">  $<br><br>
+            quantité: <input name="qteP" type="number" min=0 required value="<%=(request.getParameter("qteP")==null)?"":request.getParameter("qteP")%>"><br><br>
+            description?: <textarea placeholder="description du produit"></textarea><br><br>
+            catégorie :
+            <select name="catP" required>
+                <option>type 1</option>
+                <option>type 2</option>
+                <option>type 3</option>
+            </select>
+            <br><br>
+            <input type="hidden" name="action" value="ajouterProd" /><br />
+            <input type="submit" value="ajouter"></input>
+            <input type="sumbit" value="annuler"></input>
+        </form>
 </body>
 </html>

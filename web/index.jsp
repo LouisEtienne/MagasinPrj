@@ -25,8 +25,17 @@
         </style>
     </head>
     <body>  
-        
-<%        
+                
+    <%
+    if (session.getAttribute("connecte").equals("admin") && session.getAttribute("connecte")!=null)  //déjà connecté admin
+    {
+    %>        
+    
+    <% /* <jsp:forward page="ajouterProduit.jsp" /> */%>
+    <jsp:forward page="listProdAdm.jsp" />
+    <%
+    }
+    
         if (session.getAttribute("connecte")!=null)
         {
             out.println("<p class=\"resultat\">"+(((Acheteur) request.getSession().getAttribute("acheteur")).getCourriel())+", vous êtes connectés. "+

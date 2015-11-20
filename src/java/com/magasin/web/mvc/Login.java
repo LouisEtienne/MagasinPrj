@@ -7,9 +7,11 @@ package com.magasin.web.mvc;
 
 import com.magasin.entities.Acheteur;
 import com.magasin.entities.Administrateur;
+import com.magasin.entities.Produit;
 import com.magasin.jdbc.Connexion;
 import com.magasin.jdbc.dao.implementation.AcheteurDao;
 import com.magasin.jdbc.dao.implementation.AdministrateurDao;
+import com.magasin.jdbc.dao.implementation.ProduitDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -21,6 +23,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -127,7 +131,11 @@ public class Login extends HttpServlet {
                     //connexion OK
                     HttpSession session = request.getSession(true);
                     session.setAttribute("connecte", admin);
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+                    List <Produit> lp = new LinkedList<Produit>();
+                    ProduitDAO pdao = new ProduitDAO(Connexion.getInstance());
+                    lp = pdao.findAll();
+                    session.setAttribute("listeP",lp);
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listProdAdm.jsp");//listProdAdm.jspajouterProduit.jsp
                     r.forward(request, response);
                 }
             }
