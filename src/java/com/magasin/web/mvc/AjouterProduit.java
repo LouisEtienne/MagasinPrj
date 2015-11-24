@@ -73,17 +73,17 @@ public class AjouterProduit extends HttpServlet {
         if (p != null){
             request.setAttribute("message", "produit "+p.getNom()+" est déja existant.");
             //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/ajouterProduit.jsp");
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
             r.forward(request, response);
         }else if(!tryParseDbl(request.getParameter("codeBarreP"))){
             request.setAttribute("message", "le code barre doit être composé de chiffres.");
             //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/ajouterProduit.jsp");
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
             r.forward(request, response);           
         }else if(tryParseDbl(s) == true){
             request.setAttribute("message", "le code produit doit commencer avec 4 lettres et finir avec 6 chiffres.");
             //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/ajouterProduit.jsp");
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
             r.forward(request, response); 
         }else{
             p = new Produit();
@@ -92,19 +92,19 @@ public class AjouterProduit extends HttpServlet {
             p.setCodeProduit(request.getParameter("codeP"));
             p.setNom(request.getParameter("nomP"));
             p.setPrix(request.getParameter("prixP"));
-            p.setQantite(request.getParameter("qteP"));
+            p.setQuantite(request.getParameter("qteP"));
             
             if(pdao.create(p))
             {
                 //Utilisateur inexistant creation
                 //request.setAttribute("message", "Mot de passe incorrect.");
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/payer.jsp");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=payer");
                 r.forward(request, response);
             }
             else{
                 //Utilisateur inexistant creation
                 request.setAttribute("message", "erreur lors de la creation.");
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/panier.jsp");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
                 r.forward(request, response);
             }
             

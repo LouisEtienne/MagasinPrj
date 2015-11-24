@@ -4,9 +4,10 @@
     Author     : Louis-Étienne Lemire
 --%>
 
+<%@page import="com.magasin.entities.Administrateur"%>
 <%@page import="com.magasin.entities.Acheteur"%>
 <%
-    if (session.getAttribute("connecte")==null)  // connecté
+    if ((session.getAttribute("connecte")==null)||(session.getAttribute("connecteadmin")==null))  // connecté
     {
 %>
         <jsp:forward page="login.jsp" />
@@ -27,21 +28,27 @@
     <body>  
                 
     <%
-    if (session.getAttribute("connecte").equals("admin") && session.getAttribute("connecte")!=null)  //déjà connecté admin
-    {
+    //if (session.getAttribute("connecte").equals("admin") && session.getAttribute("connecte")!=null)  //déjà connecté admin
+    //{
     %>        
     
-    <% /* <jsp:forward page="ajouterProduit.jsp" /> */%>
-    <jsp:forward page="listProdAdm.jsp" />
+      
+    
     <%
-    }
+    //}
     
         if (session.getAttribute("connecte")!=null)
         {
             out.println("<p class=\"resultat\">"+(((Acheteur) request.getSession().getAttribute("acheteur")).getCourriel())+", vous êtes connectés. "+
                         "<a href=\"logout.do?action=logout\">déconnexion</a></p>");
 
-        }        
+        }
+        else if (session.getAttribute("connecteadmin")!=null)
+        {
+            out.println("<p class=\"resultat\">"+(((Administrateur) request.getSession().getAttribute("administrateur")).getCodeAdministrateur())+", vous êtes connectés. "+
+                        "<a href=\"logout.do?action=logout\">déconnexion</a></p>");
+
+        }     
 %>
         <%
         if (request.getAttribute("message")!=null)

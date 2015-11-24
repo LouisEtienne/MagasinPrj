@@ -114,7 +114,7 @@ public class Login extends HttpServlet {
                 if (admin==null)
                 {
                     //Utilisateur inexistant
-                    request.setAttribute("message", "Utilisateur "+u+" inexistant1.");
+                    request.setAttribute("message", "Utilisateur "+u+" inexistant.");
                     //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
                     RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
                     r.forward(request, response);
@@ -130,12 +130,13 @@ public class Login extends HttpServlet {
                 {
                     //connexion OK
                     HttpSession session = request.getSession(true);
-                    session.setAttribute("connecte", admin);
+                    session.setAttribute("connecteadmin", u);
+                    session.setAttribute("administrateur",admin);
                     List <Produit> lp = new LinkedList<Produit>();
                     ProduitDAO pdao = new ProduitDAO(Connexion.getInstance());
                     lp = pdao.findAll();
                     session.setAttribute("listeP",lp);
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listProdAdm.jsp");//listProdAdm.jspajouterProduit.jsp
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");//listProdAdm.jspajouterProduit.jsp
                     r.forward(request, response);
                 }
             }

@@ -28,7 +28,7 @@ public class ProduitDAO extends Dao<Produit>{
     @Override
     public boolean create(Produit p) {
         String req = "INSERT INTO `produit`(`codeProduit`, `codeBarre`, `nomProduit`, `categorieProduit`, `prixProduit`, `quantite`) VALUES "
-            + "('" +p.getCodeProduit()+"','"+p.getCodeBarre()+"','"+p.getNom()+"','"+p.getCategorie()+"','"+p.getPrix()+"','"+p.getQantite()+"')";
+            + "('" +p.getCodeProduit()+"','"+p.getCodeBarre()+"','"+p.getNom()+"','"+p.getCategorie()+"','"+p.getPrix()+"','"+p.getQuantite()+"')";
             //System.out.println("REQUETE "+req);
 
             Statement stm = null;
@@ -76,7 +76,7 @@ public class ProduitDAO extends Dao<Produit>{
                 p.setCodeProduit(r.getString("codeProduit"));
                 p.setNom(r.getString("nomProduit"));
                 p.setPrix(r.getString("prixProduit"));
-                p.setQantite(r.getString("quantite"));                
+                p.setQuantite(r.getString("quantite"));                
                 r.close();
                 stm.close();
                 return p;
@@ -100,7 +100,7 @@ public class ProduitDAO extends Dao<Produit>{
         Statement stm = null;
         try {
             //a faire
-            String req="UPDATE `produit` SET codeProduit=\""+p.getCodeProduit()+"\", codeBarre =\""+p.getCodeBarre()+"\", nomProduit=\"" + p.getNom() + "\", categorieProduit=\"" + p.getCategorie() + "\", prixProduit=\"" + p.getPrix()+"\", quantite=\"" + p.getQantite()  
+            String req="UPDATE `produit` SET codeProduit=\""+p.getCodeProduit()+"\", codeBarre =\""+p.getCodeBarre()+"\", nomProduit=\"" + p.getNom() + "\", categorieProduit=\"" + p.getCategorie() + "\", prixProduit=\"" + p.getPrix()+"\", quantite=\"" + p.getQuantite()  
             +" WHERE codeProduit = '" + p.getCodeProduit() + "'";
             
             
@@ -161,7 +161,7 @@ public class ProduitDAO extends Dao<Produit>{
                 p.setCodeProduit(r.getString("codeProduit"));
                 p.setNom(r.getString("nomProduit"));
                 p.setPrix(r.getString("prixProduit"));
-                p.setQantite(r.getString("quantite"));
+                p.setQuantite(r.getString("quantite"));
                 liste.add(p);
             }
             r.close();

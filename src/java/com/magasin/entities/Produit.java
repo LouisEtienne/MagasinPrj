@@ -10,7 +10,8 @@ package com.magasin.entities;
  * @author usager
  */
 public class Produit {
-    private String codeProduit,codeBarre,nom,categorie,prix,qantite;
+    private String codeProduit,codeBarre,nom,
+            categorie,prix,quantite,imageProduit;
 
     public Produit() {
     }
@@ -55,19 +56,25 @@ public class Produit {
         this.prix = prix;
     }
 
-    public String getQantite() {
-        return qantite;
+    public String getQuantite() {
+        return quantite;
     }
 
-    public void setQantite(String qantite) {
-        this.qantite = qantite;
+    public void setQuantite(String qantite) {
+        this.quantite = quantite;
     }
 
+    public String getImageProduit() {
+        return imageProduit;
+    }
 
+    public void setImageProduit(String imageProduit) {
+        this.imageProduit = imageProduit;
+    }
 
     @Override
     public String toString() {
-        return "Produit{" + "codeProduit=" + codeProduit + ", codeBarre=" + codeBarre + ", nom=" + nom + ", categorie=" + categorie + ", prix=" + prix + ", qantite=" + qantite + '}';
+        return "Produit{" + "codeProduit=" + codeProduit + ", codeBarre=" + codeBarre + ", nom=" + nom + ", categorie=" + categorie + ", prix=" + prix + ", quantite=" + quantite + '}';
     }
     
 }
