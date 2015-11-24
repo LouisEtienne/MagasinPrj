@@ -10,7 +10,7 @@
 	  <tr>
 		<th>produit</th>
 		<th>prix</th>
-		<th>quantité</th>
+		<th>quantit&eacute;</th>
 		<th></th>
 	  </tr>
 	  <tr>
@@ -27,8 +27,6 @@
 		</tr>
 	</table> 
 	Total : 13$<br>
-	<input type="button" value="payer">
-	<input type="button" value="continuer">
-	<input type="button" value="vider le panier">	
+	<input type="button" value="Enregistrer la vente">
 </body>
 </html>

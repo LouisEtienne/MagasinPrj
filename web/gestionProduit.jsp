@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h1>Activer/Désactiver acheteur</h1>
+<h1>Activer/D&eacute;sactiver acheteur</h1>
 <ol>
     <li>exProduit1<a href="www.google.com">retirer (tout)</a></li>
 </ol>

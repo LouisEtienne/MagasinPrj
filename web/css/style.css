@@ -1,0 +1,145 @@
+/* 	Ce programme sert à changer l'apparence visuelle des pages du site.
+*	Nom du fichier: style.css
+*	Auteur: Michel Plamondon
+*	Date: 17 novembre 2015
+*	Version 1	
+*/
+* {
+   padding: 0;
+   margin: 0;
+}
+
+body {
+   background: white;
+}
+
+#contenu {
+    font-family : book antiqua, arial, serif;
+    color : black;
+}
+
+#centre {
+   float: right;
+   width: 80%;
+   background:url('../images/fondEcran.jpg') no-repeat;
+   background-size: 100% 100%;
+   min-height: 800px;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+  font-size: 35px;
+}
+
+#formConnexion {
+   border: 10px groove DodgerBlue;
+   text-align: left;
+   padding: 20px;
+   margin: auto;
+   height:150px;
+   width: 400px;
+}
+
+h2 {
+   color: #800000;
+   text-align: center;
+   font-size: 30px;
+   margin-top: 20px;
+}
+
+h3 {
+   margin: 10px;
+   color: red;
+   font-size: 20px;
+   text-align: center;
+}
+
+label {
+  font-family: Arial;
+  font-size: 12pt;
+  font-weight: bold;
+  color: blue;
+}
+
+#entete {
+   text-align : center;
+   background: url('../images/entete.jpg') no-repeat;
+   background-position : left top;
+   background-size: 100% 100%;
+   min-height: 50px;
+   padding: 10px;
+}
+
+#menuadmin {
+    background-color : beige;
+}
+
+#menu, #menuadmin {
+  background:url('../images/fondmenu.jpg') no-repeat; 
+  background-size: 100% 100%;
+  float: left;
+  width: 20%;
+  min-height: 800px;
+  font-family: Arial Black;
+  font-size: 10pt;
+  font-weight: bold;
+}
+
+#menu a, #menuadmin a{
+  display:block;
+  width:250px;
+  line-height:50px;
+  margin-left: 10px;
+  margin-top: 20px;
+  padding-left: 10px;
+  vertical-align:middle;
+  background:url('../images/boutonOrdinaire.png') no-repeat;
+  color:white;
+  text-decoration:none;
+}
+
+#menu a:hover, #menuadmin a:hover {
+  background:url('../images/boutonHover.png') no-repeat;
+}
+
+#menu a:active, #menuadmin a:active {
+   background:url('../images/boutonActive.png') no-repeat;
+}
+
+/* Le tableau contient une bordure 3D d'une largeur de 5 pixels de couleur bleu.*/
+table {
+  border-collapse: collapse; /* Évite que le contenu des cellules est une bordure.*/
+  border-style: groove;
+  border-width:5px;
+  padding: 10px;
+  text-align: center;
+  margin: 20px;
+  border-color: blue;
+  background-color: rgb(224,224,224);
+}
+
+/* L'entête du tableau contient une bordure 3D d'une largeur de 5 pixels de couleur bleu.
+   Une espace de 2 pixels encadre le contenu des cellules.
+*/
+th {
+  border-style: groove;
+  border-width:5px;
+  border-color: blue;
+  padding: 2px;
+}
+
+/* Les cellules sont entourées d'une bordure de 1 pixel de couleur jaune. Une espace de 4 pixels
+   entourent le contenu des cellules. Le contenu est aligné à gauche et il a une police de 12 points
+   de couleur rouge.
+ */
+td {
+   border-style: solid;
+   border-width: 1px;
+   border-color: yellow;
+   color: red;
+   padding-left: 4px;
+   padding-right: 4px;
+   font-size : 12pt;
+   text-align: left;
+}

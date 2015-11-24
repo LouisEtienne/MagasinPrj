@@ -87,7 +87,7 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("connecte", u);
                 session.setAttribute(("acheteur"), acheteur);
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
                 r.forward(request, response);
             }
         }

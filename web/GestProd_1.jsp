@@ -9,7 +9,7 @@
 
 <table style="width:100%">
   <tr>
-    <th>Qté</th>
+    <th>Qt&eacute;</th>
     <th>Prix</th>		
     <th>Desc</th>
   </tr>
