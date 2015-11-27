@@ -27,42 +27,6 @@ public class AcheteurDao extends Dao<Acheteur> {
         super(c);
     }
     
-    
-    	public boolean create12(Acheteur x) {
-		String req = "INSERT INTO acheteur (`courriel` , `motPasseAcheteur` , `noCarteCredit`) "+
-				"VALUES ('"+x.getCourriel()+"','"+x.getMotPasseAcheteur()+"','"+x.getNoCarteCredit()+"')";
-		Statement stm = null;
-		try 
-		{
-			stm = cnx.createStatement();
-                        JOptionPane.showMessageDialog(null, "test", "InfoBox: " + "rest", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println("REQ.="+req);
-			int n= stm.executeUpdate(req);
-			if (n>0)
-			{
-				stm.close();
-				return true;
-			}
-		}
-		catch (SQLException exp)
-		{
-                    exp.printStackTrace();
-		}
-		finally
-		{
-			if (stm!=null)
-			try {
-				stm.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
-		}
-		return false;
-	}
-    
-    
-    
         @Override
         public boolean create(Acheteur x) {
             // TODO Auto-generated method stub
