@@ -16,7 +16,7 @@
         <div id="formRechercherProduit">
             <form>
                 <label for="labelcodearechercher"> Code produit &agrave; rechercher : </label>
-                <input type="text" name="codeProduit" /><br /><br />
+                <input type="text" name="codeP" /><br /><br />
 		<input type="image" src="images/boutonSupprimer.jpg" />
                 <input name="action" value="supProd" type="hidden" />
             </form>
