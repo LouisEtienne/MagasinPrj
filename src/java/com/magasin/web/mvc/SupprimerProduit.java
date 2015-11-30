@@ -38,19 +38,8 @@ public class SupprimerProduit extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");/*
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SupprimerProduit</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SupprimerProduit at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }*/
+        response.setContentType("text/html;charset=UTF-8");
+
             HttpSession session = request.getSession();
             Produit p = new Produit();//= (Produit)session.getAttribute("produit");
             //List <Produit> lp = new LinkedList<Produit>();
@@ -61,12 +50,12 @@ public class SupprimerProduit extends HttpServlet {
                 List <Produit> lp = new LinkedList<Produit>();
                 lp = pdao.findAll();
                 session.setAttribute("listeP",lp);
-                request.setAttribute("message", "produit supprimer avec succès.");
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listProdAdm.jsp");
+                request.setAttribute("messageProduit", "produit supprimer avec succès.");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
                 r.forward(request, response);
             }else{
-                request.setAttribute("message", "échec lors de la supression du produit.");
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listProdAdm.jsp");
+                request.setAttribute("messageProduit", "échec lors de la supression du produit.");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
                 r.forward(request, response);
             }
                 

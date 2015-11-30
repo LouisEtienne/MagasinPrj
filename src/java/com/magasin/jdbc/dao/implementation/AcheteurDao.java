@@ -161,30 +161,6 @@ public class AcheteurDao extends Dao<Acheteur> {
         }
         return null;
     }
-    
-    public boolean checkLogin(String user,String password) 
-	{
-            try 
-            {
-                Statement stm = null;
-                stm = cnx.createStatement(); 
-                ResultSet r = stm.executeQuery("SELECT courriel, motPasseAcheteur FROM acheteur WHERE courriel = '"+user+"' AND motPasseAcheteur ='"+password+"'" );
-                if (r.next())
-                {
-                        Acheteur c = new Acheteur(
-                               r.getString("courriel"),
-                               r.getString("motPasseAcheteur"));
-                        r.close();
-                        stm.close();
-                        return true;
-                }
-            }
-            catch (SQLException exp)
-            {
-            }
-            return false;
-	}
-
 
     @Override
     public boolean update(Acheteur x) {

@@ -86,22 +86,6 @@ public class AcheteurDaoTest {
     }
 
     /**
-     * Test of checkLogin method, of class AcheteurDao.
-     */
-    @Test
-    public void testCheckLogin() {
-        System.out.println("checkLogin");
-        String user = "";
-        String password = "";
-        AcheteurDao instance = null;
-        boolean expResult = false;
-        boolean result = instance.checkLogin(user, password);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of update method, of class AcheteurDao.
      */
     @Test

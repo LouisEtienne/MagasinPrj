@@ -95,7 +95,7 @@ public class Login extends HttpServlet {
                 if (u==null || u.trim().equalsIgnoreCase(""))
                 {
                     //Utilisateur inexistant
-                    request.setAttribute("message", "Username obligatoire");
+                    request.setAttribute("messageAdmin", "Username obligatoire");
                     RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
                     r.forward(request, response);
                     return;
@@ -114,7 +114,7 @@ public class Login extends HttpServlet {
                 if (admin==null)
                 {
                     //Utilisateur inexistant
-                    request.setAttribute("message", "Utilisateur "+u+" inexistant.");
+                    request.setAttribute("messageAdmin", "Utilisateur "+u+" inexistant.");
                     //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
                     RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
                     r.forward(request, response);
@@ -122,7 +122,7 @@ public class Login extends HttpServlet {
                 else if (!admin.getMotPasseAdministrateur().equals(p))
                 {
                     //Mot de passe incorrect
-                    request.setAttribute("message", "Mot de passe incorrect.");
+                    request.setAttribute("messageAdmin", "Mot de passe incorrect.");
                     RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
                     r.forward(request, response);
                 }

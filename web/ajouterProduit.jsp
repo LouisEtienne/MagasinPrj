@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ajouter Produit</title>
-        <style type="text/css">
-            .errorMessage {color : red;}
-            .resultat {font-weight: bold;}
-        </style>
+    <title>Ajouter Produit</title>
 </head>
 <body>
 
@@ -16,7 +12,7 @@
             out.println("<span class=\"errorMessage\">"+request.getAttribute("message")+"</span>");
         }
         %>
-        <form action="ajtProd.do">
+        <form action="ajouterProd.do">
             code du produit (4lettres 6chiffre) : <input name="codeP" type="text" pattern=".{10,10}" 
                 required title="10 caractères" value="<%=(request.getParameter("codeP")==null)?"":request.getParameter("codeP")%>"><br><br>
             code barre du produit : <input name="codeBarreP" type="text" pattern=".{12,13}" 
@@ -28,7 +24,7 @@
             description : <textarea placeholder="description du produit"></textarea><br><br>
             catégorie :<input type="text" name="categorie" value=""> </input>
             <br><br>
-            <input type="hidden" name="action" value="ajouterProd" /><br />
+            <input type="hidden" name="action"></input><br />
             <input type="submit" value="ajouter"></input>
             <input type="sumbit" value="annuler"></input>
         </form>

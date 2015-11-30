@@ -9,7 +9,6 @@ import com.magasin.entities.Produit;
 import com.magasin.jdbc.Connexion;
 import com.magasin.jdbc.dao.implementation.ProduitDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,23 +45,6 @@ public class AjouterProduit extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ajouterProduit</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ajouterProduit at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }*/
-
-
-       /*if (tryParseInt(input)) {  
-          Integer.parse(input);  // We now know that it's safe to parse
-       }*/
         
         String s = request.getParameter("codeP").substring(0, 4);
         
@@ -91,8 +73,8 @@ public class AjouterProduit extends HttpServlet {
             p.setCodeBarre(request.getParameter("codeBarreP"));
             p.setCodeProduit(request.getParameter("codeP"));
             p.setNom(request.getParameter("nomP"));
-            p.setPrix(request.getParameter("prixP"));
-            p.setQuantite(request.getParameter("qteP"));
+            p.setPrix(Double.parseDouble(request.getParameter("prixP")));
+            p.setQuantite(Integer.parseInt(request.getParameter("qteP")));
             
             if(pdao.create(p))
             {
@@ -110,7 +92,6 @@ public class AjouterProduit extends HttpServlet {
             
             
         }
-        //http://stackoverflow.com/questions/10281962/is-there-a-minlength-validation-attribute-in-html5
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

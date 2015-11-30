@@ -37,6 +37,12 @@ public class ValidationTest {
     public void tearDown() {
     }
 
+    // Exemple de test de Michel
+    @Test
+    public void testTelephoneTiretMalPlace() {
+        assertEquals(false, Validation.pregMatchTele("514—123-456"));       
+    }
+    
     /**
      * Test of pregMatchTele method, of class Validation.
      */
@@ -45,7 +51,7 @@ public class ValidationTest {
         System.out.println("pregMatchTele");
         boolean expResult;
         String patternTele = "[1-9][0-9][0-9][-][1-9][0-9][0-9][-][0-9][0-9][0-9][0-9]";
-        String content = "455-455-4555";
+        String content = "514-746-1234";
         if (content.matches(patternTele))
         {
             expResult = true;
@@ -53,8 +59,7 @@ public class ValidationTest {
             expResult = false;
         } 
         boolean result = Validation.pregMatchTele(content);
-        assertEquals(expResult, result);
-        
+        assertEquals(expResult, result);       
     }
     
     /**
@@ -70,7 +75,7 @@ public class ValidationTest {
         System.out.println("pregMatchCodePostal");
          boolean expResult;
         String patternCodePostal = "[a-zA-Z][0-9][a-zA-Z][0-9][a-zA-Z][0-9]";
-        String content = "H1M2K5";
+        String content = "H2T 5N4";
         if (content.matches(patternCodePostal))
         {
             expResult = true;
@@ -89,7 +94,7 @@ public class ValidationTest {
         System.out.println("pregMatchCredit");
         boolean expResult;
         String patternCredit = "[0-9][0-9][0-9][1-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]";
-        String content = "1234567890987654";
+        String content = "1234567890123456";
         if (content.matches(patternCredit))
         {
             expResult = true;

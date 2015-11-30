@@ -5,21 +5,13 @@
  */
 package com.magasin.web.mvc;
 
-import com.magasin.jdbc.Connexion;
-import com.magasin.jdbc.dao.implementation.AcheteurDao;
-import com.magasin.jdbc.dao.implementation.AdministrateurDao;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -45,71 +37,81 @@ public class Controleur extends HttpServlet {
         
         if (action !=null)
         {
-        if ("loginAcheteur".equals(action))
+            if ("loginAcheteur".equals(action))
             {                
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signin");  //redirection vers la servlet de connexion Acheteur
                 r.forward(request, response);
                 return;         
             } 
         
-        if ("loginAdmin".equals(action))
+            if ("loginAdmin".equals(action))
             {
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signin");  //redirection vers la servlet de connexion Admin
                 r.forward(request, response);
                 return;
             }  
         
-        if ("logout".equals(action))
+            if ("logout".equals(action))
             {
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/signout");  //redirection vers la déconnexion
                 r.forward(request, response);
                 return;
             }
             
-        if("creerCompte".equals(action)){
+            if("creerCompte".equals(action)){
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");  //redirection vers la servlet création de compte
                 r.forward(request, response);
                 return;
             }
-        if("compteCree".equals(action)){
+            if("compteCree".equals(action)){
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/CreationCompte");  //redirection vers la servlet login
                 r.forward(request, response);
                 return;
             }
             
-        if("modifierCompte".equals(action)){
+            if("modifierCompte".equals(action)){
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/MAJcompte");  //redirection vers le formulaire de mise à jour du compte
                 r.forward(request, response);
                 return;
             }
             
-        if("compteModifie".equals(action)){
+            if("compteModifie".equals(action)){
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/ModifierCompte");  //redirection vers la servlet modifier compte
                 r.forward(request, response);
                 return;
             }
          
             if("ajouterProd".equals(action)){
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/AjouterProduit");  //redirection vers la servlet login
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/AjouterProduit");
                 r.forward(request, response);
                 return;
             }
             if("supProd".equals(action)){
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/SupprimerProduit");  //redirection vers la servlet modifier compte
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/SupprimerProduit");
                 r.forward(request, response);
                 return;
-            }        
+            }
+            if("rechercheModifierProduit".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RechercherModifierProduit");
+                r.forward(request, response);
+                return;
+            }
+            if("rechercheSupprimerProduit".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RechercherSupprimerProduit");
+                r.forward(request, response);
+                return;
+            }                       
             if("modProd".equals(action)){
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/MAJproduit");  //redirection vers la servlet modifier compte
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/MAJproduit");
                 r.forward(request, response);
                 return;
-            }         if ("annulation".equals(action))
+            }
+            if ("annulation".equals(action))
             {                
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");  //redirection vers l'index
                 r.forward(request, response);
-                return;         
-            }     
-            return;
+                return;        
+            }
         }
         
     }

@@ -11,7 +11,9 @@ package com.magasin.entities;
  */
 public class Produit {
     private String codeProduit,codeBarre,nom,
-            categorie,prix,quantite,imageProduit;
+            categorie,imageProduit;
+    private int quantite;
+    private double prix;
 
     public Produit() {
     }
@@ -48,20 +50,20 @@ public class Produit {
         this.categorie = categorie;
     }
 
-    public String getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
-        this.prix = prix;
+    public void setPrix(double prix) {
+        this.prix = prix >= 0 ? prix : 0;
     }
 
-    public String getQuantite() {
+    public int getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(String qantite) {
-        this.quantite = quantite;
+    public void setQuantite(int quantite) {
+        this.quantite = quantite >= 0 ? quantite : 0;
     }
 
     public String getImageProduit() {

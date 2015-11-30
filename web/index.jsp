@@ -33,15 +33,12 @@
                 }
                 if (session.getAttribute("connecte")!=null)
                 {
-            
-                    /*out.println("<p class=\"resultat\">"+(((Acheteur) request.getSession().getAttribute("acheteur")).getCourriel())+", vous êtes connectés. "+
-                                "<a href=\"logout.do?action=logout\">déconnexion</a></p>");*/
             %>
                 <div id='menu'>
                     <ul>                  
                         <li><a href="ctrl.do?action=modifierCompte">Modification de compte</a></li>
                         <li><a href="?">Gestion du panier</a></li>
-                        <li><a href="?">Rechercher un produit</a></li>
+                        <li><a href="?">Rechercher un produit</a></li>                    
                         <li><a href="logout.do?action=logout">D&eacute;connexion</a></li>
                     </ul>
                 </div>
@@ -49,16 +46,13 @@
             }
             else if (session.getAttribute("connecteadmin")!=null)
             {
-                /*out.println("<p class=\"resultat\">"+(((Administrateur) request.getSession().getAttribute("administrateur")).getCodeAdministrateur())+", vous êtes connectés. "+
-                            "<a href=\"logout.do?action=logout\">déconnexion</a></p>");*/
             %>
                 <div id='menuadmin'>
                     <ul>                  
-                        <li><a href="ctrl.do?action=modifierCompte">Modification de compte</a></li>
+                        <li><a href="?">Rechercher un acheteur</a></li>
                         <li><a href="?">Ajouter un produit</a></li>
-                        <li><a href="?">Modifier un produit</a></li>
-                        <li><a href="?">Supprimer un produit</a></li>
-                        <li><a href="?">Rechercher un produit</a></li>
+                        <li><a href="rechercherModifierProduit.do?action=rechercheModifierProduit">Modifier un produit</a></li>
+                        <li><a href="rechercheSupprimerProduit.do?action=rechercheSupprimerProduit">Supprimer un produit</a></li>
                         <li><a href="logout.do?action=logout">D&eacute;connexion</a></li>
                     </ul>
                 </div>

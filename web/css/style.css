@@ -32,15 +32,6 @@ h1 {
   font-size: 35px;
 }
 
-#formConnexion {
-   border: 10px groove DodgerBlue;
-   text-align: left;
-   padding: 20px;
-   margin: auto;
-   height:150px;
-   width: 400px;
-}
-
 h2 {
    color: #800000;
    text-align: center;
@@ -60,6 +51,24 @@ label {
   font-size: 12pt;
   font-weight: bold;
   color: blue;
+}
+
+#formConnexionAcheteur {
+   margin-left: 400px;
+   margin-right: 400px;
+   margin-top: 20px; 
+   padding-left: 10px;
+   border: 10px groove red;
+   text-align: left;
+}
+
+#formConnexionAdmin, #formRechercherProduit {
+   margin-left: 400px;
+   margin-right: 400px;
+   margin-top: 20px;
+   padding-left: 10px;
+   border: 10px groove DodgerBlue;
+   text-align: left;
 }
 
 #entete {
@@ -82,7 +91,7 @@ label {
   width: 20%;
   min-height: 800px;
   font-family: Arial Black;
-  font-size: 10pt;
+  font-size: 14pt;
   font-weight: bold;
 }
 
@@ -142,4 +151,23 @@ td {
    padding-right: 4px;
    font-size : 12pt;
    text-align: left;
+}
+
+hr {
+    margin-top: 10px;
+    border-width: 10px;
+    border-color: greenyellow;
+} 
+
+.errorMessage {
+    color : red;
+    font-weight: bold;
+}
+
+.resultat {
+    font-weight: bold;
+}
+
+.bouton {
+    padding-right: 20px;
 }

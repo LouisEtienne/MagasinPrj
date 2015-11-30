@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JOptionPane;
 /**
  *
  * @author usager
@@ -75,8 +74,8 @@ public class ProduitDAO extends Dao<Produit>{
                 p.setCodeBarre(r.getString("codeBarre"));
                 p.setCodeProduit(r.getString("codeProduit"));
                 p.setNom(r.getString("nomProduit"));
-                p.setPrix(r.getString("prixProduit"));
-                p.setQuantite(r.getString("quantite"));                
+                p.setPrix(r.getDouble("prixProduit"));
+                p.setQuantite(r.getInt("quantite"));                
                 r.close();
                 stm.close();
                 return p;
@@ -160,8 +159,8 @@ public class ProduitDAO extends Dao<Produit>{
                 p.setCodeBarre(r.getString("codeBarre"));
                 p.setCodeProduit(r.getString("codeProduit"));
                 p.setNom(r.getString("nomProduit"));
-                p.setPrix(r.getString("prixProduit"));
-                p.setQuantite(r.getString("quantite"));
+                p.setPrix(r.getDouble("prixProduit"));
+                p.setQuantite(r.getInt("quantite"));
                 liste.add(p);
             }
             r.close();

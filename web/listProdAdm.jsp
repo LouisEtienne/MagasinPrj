@@ -5,15 +5,12 @@
 <head>
 <title>Liste de Produit</title>
 <% List <Produit> lp = (List<Produit>)session.getAttribute("listeP"); %>
-        <style type="text/css">
-            .errorMessage {color : red;}
-            .resultat {font-weight: bold;}
-        </style>
+
 </head>
 <body><%
-        if (request.getAttribute("message")!=null)
+        if (request.getAttribute("messageProduit")!=null)
         {
-            out.println("<p class=\"errorMessage\">"+request.getAttribute("message")+"</p>");
+            out.println("<p class=\"errorMessage\">"+request.getAttribute("messageProduit")+"</p>");
         }
         %>
     <h1>Liste de Produits total:<%=lp.size()%></h1>
@@ -35,7 +32,7 @@
         <th><%= lp.get(i).getNom() %></th> 
         <th><%= lp.get(i).getCategorie() %></th>
         <th><%= lp.get(i).getPrix() %></th>
-        <th><%= lp.get(i).getQantite() %> </th>
+        <th><%= lp.get(i).getQuantite() %> </th>
         <th><a href=supp.do?action=supProd&codeP=<%=lp.get(i).getCodeProduit()%> >retirer</a></th>
         <th><a href=mod.do?action=modProd&codeP=<%=lp.get(i).getCodeProduit()%> >modifier</a></th>
     </tr>
