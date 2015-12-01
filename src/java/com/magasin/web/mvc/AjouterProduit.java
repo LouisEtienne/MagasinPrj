@@ -78,14 +78,12 @@ public class AjouterProduit extends HttpServlet {
             
             if(pdao.create(p))
             {
-                //Utilisateur inexistant creation
-                //request.setAttribute("message", "Mot de passe incorrect.");
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=payer");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
                 r.forward(request, response);
             }
             else{
                 //Utilisateur inexistant creation
-                request.setAttribute("message", "erreur lors de la creation.");
+                request.setAttribute("messageCreation", "Erreur lors de la creation.");
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
                 r.forward(request, response);
             }

@@ -46,6 +46,10 @@ h3 {
    text-align: center;
 }
 
+h4 {
+    color: red;
+}
+
 label {
   font-family: Arial;
   font-size: 12pt;
@@ -169,5 +173,18 @@ hr {
 }
 
 .bouton {
-    padding-right: 20px;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size : 12pt;
+    background-color : burlywood;
+    padding : 2px;
+}
+
+#connexion {
+   background:url('../images/connexion.jpg') no-repeat;
+   background-size: 100% 100%;    
+}
+
+#creationCompte {
+    margin-left:20px;
 }

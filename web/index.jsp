@@ -27,10 +27,10 @@
                     <jsp:forward page="login.jsp" />
             <%
                 }
-                if (request.getAttribute("message")!=null)
+                /*if (request.getAttribute("message")!=null)
                 {
                     out.println("<p class=\"errorMessage\">"+request.getAttribute("message")+"</p>");
-                }
+                }*/
                 if (session.getAttribute("connecte")!=null)
                 {
             %>

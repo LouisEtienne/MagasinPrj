@@ -13,7 +13,6 @@ import com.magasin.jdbc.dao.implementation.AcheteurDao;
 import com.magasin.jdbc.dao.implementation.AdministrateurDao;
 import com.magasin.jdbc.dao.implementation.ProduitDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
