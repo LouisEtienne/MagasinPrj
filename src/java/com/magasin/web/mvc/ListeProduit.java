@@ -5,26 +5,21 @@
  */
 package com.magasin.web.mvc;
 
-import com.magasin.entities.Produit;
-import com.magasin.jdbc.Connexion;
-import com.magasin.jdbc.dao.implementation.ProduitDAO;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Marie
+ * @author usager
  */
-@WebServlet(name = "MAJproduit", urlPatterns = {"/MAJproduit"})
-public class MAJproduit extends HttpServlet {
+@WebServlet(name = "ListeProduit", urlPatterns = {"/ListeProduit"})
+public class ListeProduit extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,35 +32,21 @@ public class MAJproduit extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        String codeProduit = (String) request.getParameter("codeProduit");
-        if(!codeProduit.equals("")) {
-            Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
-            ProduitDAO pdao = new ProduitDAO(Connexion.getInstance());
-            HttpSession session = request.getSession();
-            Produit p = pdao.read(codeProduit);
-            if(p != null) {
-                List <Produit> lp = new LinkedList<Produit>();
-                lp = pdao.findAll();
-                session.setAttribute("listeP",lp);
-                session.setAttribute("produit",p);
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=modifierProduit");   
-                r.forward(request, response);
-            }
-            else
-            {
-                request.setAttribute("messageErreur","Le code produit demand&eacute; est inexistant.");
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=rechercherModifierProduit");   
-                r.forward(request, response); 
-            }
-        }
-        else
-        {
-            request.setAttribute("messageErreur","Le champ du code produit est vide.");
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=rechercherModifierProduit");   
-            r.forward(request, response);            
-        }
+        response.setContentType("text/html;charset=UTF-8");/*
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. 
+            out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ListeProduit</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ListeProduit at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }*/
+        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");//listProdAdm.jspajouterProduit.jsp
+        r.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

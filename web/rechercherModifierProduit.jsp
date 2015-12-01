@@ -1,5 +1,5 @@
 <%-- 
-    Document   : rechercherProduitAdmin
+    Document   : rechercherModifierProduit
     Created on : 2015-11-27, 09:08:47
     Author     : usager
 --%>

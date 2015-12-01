@@ -23,7 +23,9 @@
             <label>Cat&eacute;gorie :</label><input type="text" name="categorie" value=""> </input>
             <br /><br />
             <input type="image" src="images/boutonAjouter.jpg">
-            <input name="action" value="supProd" type="hidden">
+            <input type="hidden" name="action" value="ajouterProd" /><br />
+            <input type="submit" value="ajouter"></input>
+            <input type="submit" value="annuler"></input>
         </form>
     </body>
 </html>
