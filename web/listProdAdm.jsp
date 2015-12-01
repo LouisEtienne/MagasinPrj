@@ -33,8 +33,8 @@
         <th><%= lp.get(i).getCategorie() %></th>
         <th><%= lp.get(i).getPrix() %></th>
         <th><%= lp.get(i).getQuantite() %> </th>
-        <th><a href=supp.do?action=supProd&codeP=<%=lp.get(i).getCodeProduit()%> >retirer</a></th>
-        <th><a href=mod.do?action=modProd&codeP=<%=lp.get(i).getCodeProduit()%> >modifier</a></th>
+        <th><a href=supp.do?action=supProd&codeProduit=<%=lp.get(i).getCodeProduit()%> >retirer</a></th>
+        <th><a href=mod.do?action=modProd&codeProduit=<%=lp.get(i).getCodeProduit()%> >modifier</a></th>
     </tr>
     <% }%>
     
