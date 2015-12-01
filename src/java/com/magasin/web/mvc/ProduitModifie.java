@@ -61,7 +61,7 @@ public class ProduitModifie extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }*/
-        String s = request.getParameter("codeBarreP").substring(0, 4);
+        String s = request.getParameter("codeP").substring(0, 4);
         
         Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
         ProduitDAO pdao = new ProduitDAO(Connexion.getInstance());

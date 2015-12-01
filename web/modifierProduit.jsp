@@ -24,7 +24,7 @@
         <form action="modProd.do">
             <table>
                 <tr><td>Code barre</td> <td><%= pr.getCodeBarre() %></td><td><input name="codeBarreP" type="text" pattern=".{12,13}" required title="12 a 13 caractères" 
-                    value="" ></td></tr>
+                    value="<%= pr.getCodeBarre() %>" ></td></tr>
                 <tr><td>Nom produit</td><td><%= pr.getNom() %></td><td><input name="nomP" type="text" 
                     required ></td></tr>
                 <tr><td>Cat&eacute;gorie</td><td><%= pr.getCategorie() %></td><td>            
@@ -33,10 +33,11 @@
                         <option>type 2</option>
                         <option>type 3</option>
                     </select></td></tr>
-                <tr><td>Prix</td><td><%= pr.getPrix() %></td><td><input name="prixP" type="number" min=0 step=0.1 required value="" ></td></tr>
+                <tr><td>Prix</td><td><%= pr.getPrix() %></td><td><input name="prixP" type="number" min=0 step=0.1 required value<%= pr.getPrix() %> ></td></tr>
                 <tr><td>Quantit&eacute;</td><td><%= pr.getQuantite() %></td><td>
-                    <input name="qteP" type="number" min=0 required value="" ></td></tr>
+                    <input name="qteP" type="number" min=0 required value="<%= pr.getQuantite() %>" ></td></tr>
             </table>
+            <input type="hidden" value="<%= pr.getCodeProduit() %>" name="codeP">        
             <input type="hidden" value="produitModifie" name="action">
             <input type="submit" value="Ajouter"></input>
             <input type="submit" value="Annuler"></input>
