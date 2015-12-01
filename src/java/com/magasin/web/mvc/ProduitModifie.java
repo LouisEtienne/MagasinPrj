@@ -99,11 +99,11 @@ public class ProduitModifie extends HttpServlet {
                 lp = pdao.findAll();
                 HttpSession session = request.getSession();
                 session.setAttribute("listeP",lp);
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=payer");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ListeProd");
                 r.forward(request, response);
             }
             else{
-                //Utilisateur inexistant creation
+                //
                 request.setAttribute("message", "erreur lors de la modification.");
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
                 r.forward(request, response);
