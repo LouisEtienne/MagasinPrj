@@ -57,28 +57,28 @@ public class ModifierCompte extends HttpServlet {
         
         Validation valid = new Validation();
         
-        if (!valid.pregMatchTele(telephoneprincipal))
+        if (telephoneprincipal!="" && !valid.pregMatchTele(telephoneprincipal))
         {
             request.setAttribute("message", "Numéro de téléphone invalide");
             RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=modifierCompte");
             r.forward(request, response);
         }
         
-        if (!valid.pregMatchTele(telephonesecondaire))
+        if (telephonesecondaire!="" && !valid.pregMatchTele(telephonesecondaire))
         {
             request.setAttribute("message", "Numéro de téléphone secondaire invalide");
             RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=modifierCompte");
             r.forward(request, response);
         }
         
-        if (!valid.pregMatchCodePostal(codepostal))
+        if (codepostal!="" && !valid.pregMatchCodePostal(codepostal))
         {
             request.setAttribute("message", "Code postal invalide");
             RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=modifierCompte");
             r.forward(request, response);
         }
         
-        if (!valid.pregMatchCredit(numero))
+        if (numero!="" && !valid.pregMatchCredit(numero))
         {
             request.setAttribute("message", "Numéro de carte invalide");
             RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=modifierCompte");
