@@ -6,7 +6,7 @@
 <body>
 
 <h1>Panier d'achat</h1>
-	<table style="width:70%">
+	<table>
 	  <tr>
 		<th>produit</th>
 		<th>prix</th>
@@ -17,7 +17,7 @@
 		<td>orange</td>
 		<td>1</td>
 		<td>5</td>
-		<td><a href="google.com">retier</a></td>		
+		<td><a href="google.com">retirer</a></td>		
 	  </tr>
 	  <tr>
 		<td>prod2</td>
@@ -26,7 +26,7 @@
 		<td><a href="google.com">retirer</a></td>
 		</tr>
 	</table> 
-	Total : 13$<br>
-	<input type="button" value="Enregistrer la vente">
+	<br />
+	<input type="button"  class="bouton" value="Voir la facture">
 </body>
 </html>

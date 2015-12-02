@@ -90,8 +90,8 @@ public class AjouterProduit extends HttpServlet {
             }
             else{
                 //Utilisateur inexistant creation
-                request.setAttribute("messageCreation", "Erreur lors de la creation.");
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
+                request.setAttribute("messageCreation", "Erreur lors de la création.");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
                 r.forward(request, response);
             }
             

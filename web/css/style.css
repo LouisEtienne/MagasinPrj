@@ -58,21 +58,33 @@ label {
 }
 
 #formConnexionAcheteur {
-   margin-left: 400px;
+   margin-left: 100px;
    margin-right: 400px;
    margin-top: 20px; 
    padding-left: 10px;
    border: 10px groove red;
    text-align: left;
+   min-width: 200px;
 }
 
-#formConnexionAdmin, #formRechercherProduit {
-   margin-left: 400px;
+#formConnexionAdmin {
+   margin-left: 100px;
    margin-right: 400px;
    margin-top: 20px;
    padding-left: 10px;
    border: 10px groove DodgerBlue;
    text-align: left;
+   min-width: 200px;
+}
+
+#formRechercherAcheteur, #formRechercherProduit {
+   margin-left: 100px;
+   margin-right: 400px;
+   margin-top: 20px;
+   padding-left: 10px;
+   border: 10px ridge seagreen;
+   text-align: left;
+   min-width: 200px;    
 }
 
 #entete {
@@ -84,10 +96,6 @@ label {
    padding: 10px;
 }
 
-#menuadmin {
-    background-color : beige;
-}
-
 #menu, #menuadmin {
   background:url('../images/fondMenu.jpg') no-repeat; 
   background-size: 100% 100%;
@@ -95,7 +103,7 @@ label {
   width: 20%;
   min-height: 800px;
   font-family: Arial Black;
-  font-size: 14pt;
+  font-size: 12pt;
   font-weight: bold;
 }
 
@@ -182,9 +190,12 @@ hr {
 
 #connexion {
    background:url('../images/connexion.jpg') no-repeat;
-   background-size: 100% 100%;    
+   background-size: 100% 100%;
+   min-height: 800px;
 }
 
 #creationCompte {
-    margin-left:20px;
+    background:url('../images/creationCompte.jpg') no-repeat;
+    background-size: 100% 100%;
+    min-height: 800px;    
 }

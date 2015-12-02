@@ -13,16 +13,16 @@
             out.println("<p class=\"errorMessage\">"+request.getAttribute("messageProduit")+"</p>");
         }
         %>
-    <h1>Liste de Produits total:<%=lp.size()%></h1>
+    <h2>Liste de Produits total:<%=lp.size()%></h2>
 <table>
     <tr>
         <th>Code barre</th>
-        <th>Nom produit</th>
-        <th>catégorie</th>
+        <th>Nom du produit</th>
+        <th>Cat&eacute;gorie</th>
         <th>Prix</th>
-        <th>quantité</th>
-        <th>retirer</th>
-        <th>modifié</th>
+        <th>Quantit&eacute;</th>
+        <th>Retirer</th>
+        <th>Modifier</th>
     </tr>
     <% for(int i=0; i<lp.size(); i++){
           

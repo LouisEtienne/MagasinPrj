@@ -10,17 +10,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-                <style type="text/css">
-            .errorMessage {color : red;}
-            .resultat {font-weight: bold;}
-        </style>
+        <title>Modification d'un produit</title>
         <%
             Produit pr = (Produit)session.getAttribute("produit");
         %>
     </head>
     <body>
-        <h1>Modifier un produit</h1>
+        <h2>Modifier un produit</h2>
+        <%
+        if (request.getAttribute("messageModification")!=null)
+        {
+            out.println("<span class=\"errorMessage\">"+request.getAttribute("messageModification")+"</span>");
+        }
+        %>        
         <form action="modProd.do">
             <table>
                 <tr><td>Code barre</td> <td><%= pr.getCodeBarre() %></td><td><input name="codeBarreP" type="text" pattern=".{12,13}" required title="12 a 13 caractères" 
@@ -39,8 +41,8 @@
             </table>
             <input type="hidden" value="<%= pr.getCodeProduit() %>" name="codeP">        
             <input type="hidden" value="produitModifie" name="action">
-            <input type="submit" value="Ajouter"></input>
-            <input type="submit" value="Annuler"></input>
+            <input type="submit" class="bouton" value="Ajouter"></input>
+            <input type="submit" class="bouton" value="Annuler"></input>
         </form>
         
     </body>

@@ -2,7 +2,7 @@
  * Cette classe contient les informations sur une facture pour un client en
  * particulier. Elle comprend des lignes de facture pour chaque produit acheté
  * ainsi que les différents montants.
- * Fichier : Taxes.java
+ * Fichier : Facture.java
  * Date de création : 2015-02-24
  * Date de modification : 2015-11-30
  * @author Michel Plamondon
@@ -34,7 +34,7 @@ public class Facture {
     
     /** 
      * Ce constructeur permet de construire une facture avec les valeurs calculées
-     * pour un achat d'un achteur en particulier.
+     * pour un achat d'un acheteur en particulier.
      * @param noFacture Valeur entière représentant le numéro de la facture.
      * @param dateFacture Valeur de type Date représentant la date de la facture.
      * @param montantHorsTaxes Valeur de type double pour le montant hors taxes.
@@ -180,6 +180,13 @@ public class Facture {
         this.unAcheteur = unAcheteur;
     }
 
+    /** 
+     * Cette méthode retourne le nombre de lignes d'un facture.
+     * @return Valeur entière représentant le nombre de lignes dans la facture.
+     */     
+    public int getNombreLignesFacture() {
+        return listeLignesFacture.size();
+    }
     /** 
      * Cette méthode détermine si deux factures sont identiques.
      * @return Valeur booléenne pour confirmer si deux factures sont identiques.

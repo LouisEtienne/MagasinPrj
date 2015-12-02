@@ -99,16 +99,11 @@ public class Controleur extends HttpServlet {
                 r.forward(request, response);
                 return;
             }
-            if("rechercheModifierProduit".equals(action)){
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RechercherModifierProduit");
+            if("rechercheAcheteur".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RechercherAcheteur");
                 r.forward(request, response);
                 return;
-            }
-            if("rechercheSupprimerProduit".equals(action)){
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RechercherSupprimerProduit");
-                r.forward(request, response);
-                return;
-            }                       
+            }            
             if("modProd".equals(action)){
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/MAJproduit");
                 r.forward(request, response);

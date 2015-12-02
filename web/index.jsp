@@ -49,10 +49,10 @@
             %>
                 <div id='menuadmin'>
                     <ul>                        
-                        <li><a href="ctrl.do?action=modifierCompte">Rechercher un acheteur</a></li>
+                        <li><a href="index.jsp?vue=rechercherAcheteur">Modifier profil acheteur</a></li>
                         <li><a href="index.jsp?vue=ajouterProduit">Ajouter un produit</a></li>
-                        <li><a href="rechercherModifierProduit.do?action=rechercheModifierProduit">Modifier un produit</a></li>
-                        <li><a href="rechercheSupprimerProduit.do?action=rechercheSupprimerProduit">Supprimer un produit</a></li>
+                        <li><a href="index.jsp?vue=rechercherModifierProduit">Modifier un produit</a></li>
+                        <li><a href="index.jsp?vue=rechercherSupprimerProduit">Supprimer un produit</a></li>
                         <li><a href="ctrl.do?action=listeProd">Liste de produits</a></li>
                         <li><a href="logout.do?action=logout">D&eacute;connexion</a></li>
                     </ul>
