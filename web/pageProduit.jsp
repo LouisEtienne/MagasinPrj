@@ -15,7 +15,7 @@
 	description: <textarea placeholder="description du produit">une banana</textarea><br><br>
 	type :aliment <br><br>
 		<input type="button" value="ajouter"></input>
-		<input type="button" value="retour"></input>
+		<input type="reset" value="effacer les champs"></input>
 </div>
 
 <p>This is a paragraph.

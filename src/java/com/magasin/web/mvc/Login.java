@@ -86,6 +86,10 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("connecte", u);
                 session.setAttribute(("acheteur"), acheteur);
+                List <Produit> lp = new LinkedList<Produit>();
+                ProduitDAO pdao = new ProduitDAO(Connexion.getInstance());
+                lp = pdao.findAll();
+                session.setAttribute("listeP",lp);
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
                 r.forward(request, response);
             }

@@ -36,6 +36,6 @@
 						<option>987654321</option>
 					</select><br>		<br>
 	<input type="button" value="payer">
-	<input type="button" value="annuler">
+	<input type="reset" value="effacer les champs">
 </body>
 </html>

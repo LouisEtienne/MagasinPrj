@@ -47,7 +47,7 @@ language="java"
         </form>
         <br />
         <form>
-            <input type="hidden" name="action" value="annulation">
+            <input type="hidden" name="reset" value="effacer les champs">
             <input type="submit" name="" class="bouton" value="Annuler">
         </form>
         <%

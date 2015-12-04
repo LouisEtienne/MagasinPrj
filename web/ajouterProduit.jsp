@@ -20,11 +20,11 @@
             <label>Prix : </label><input name="prixP" type="number" min=0 step=0.01 required value="<%=(request.getParameter("prixP")==null)?"":request.getParameter("prixP")%>"><label> $</label><br /><br />
             <label>Quantit&eacute; : </label><input name="qteP" type="number" min=0 required value="<%=(request.getParameter("qteP")==null)?"":request.getParameter("qteP")%>"><br /><br />
             <label>Description : </label><textarea placeholder="description du produit"></textarea><br><br>
-            <label>Cat&eacute;gorie :</label><input type="text" name="categorie" value=""> </input>
+            <label>Cat&eacute;gorie :</label><input type="text" name="catP" value=""> </input>
             <br /><br />
             <input type="hidden" name="action" value="ajouterProd" /><br />
             <input type="submit" class="bouton" value="Ajouter"></input>
-            <input type="submit" class="bouton" value="Annuler"></input>
+            <input type="reset" class="bouton" value="effacer les champs"></input>
         </form>
     </body>
 </html>

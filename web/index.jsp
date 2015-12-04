@@ -38,7 +38,8 @@
                     <ul>                  
                         <li><a href="ctrl.do?action=modifierCompte">Modification de compte</a></li>
                         <li><a href="?">Gestion du panier</a></li>
-                        <li><a href="?">Rechercher un produit</a></li>                    
+                        <li><a href="index.jsp?vue=rechercheProduit">Rechercher un produit</a></li>                    
+                        <li><a href="index.jsp?vue=listProd">consulter les produits</a></li>
                         <li><a href="logout.do?action=logout">D&eacute;connexion</a></li>
                     </ul>
                 </div>
@@ -75,11 +76,11 @@
                    else
                     {
             %>
-                        <h1>Vous êtes à la vue par défaut</h1>
-                        <ul class="box">
+                        <h1>Erreur 404</h1>
+<!--                        <ul class="box">
                         <li><a href="ctrl.do?action=">Gestion de panier</a></li>  
                         <li><a href="ctrl.do?action=modifierCompte">Modification de compte</a></li>                        
-                        </ul>
+                        </ul>-->
             <%
                     }
             %>
