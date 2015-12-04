@@ -102,7 +102,8 @@ public class ProduitDAO extends Dao<Produit>{
         try {
             //a faire
             String req="UPDATE `produit` SET codeProduit=\""+p.getCodeProduit()+"\", codeBarre =\""+p.getCodeBarre()+"\", nomProduit=\"" + p.getNom() + "\", categorieProduit=\"" + p.getCategorie() + "\", prixProduit=\"" + p.getPrix()+"\", quantiteProduit=\"" + p.getQuantite()  
-            +" WHERE codeProduit = '" + p.getCodeProduit() + "'";
+            +"\""+" WHERE codeProduit = '" + p.getCodeProduit() + "'";
+            
             
             
             stm = cnx.createStatement();

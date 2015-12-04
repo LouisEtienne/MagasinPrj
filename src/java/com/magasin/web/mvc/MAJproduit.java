@@ -60,8 +60,7 @@ public class MAJproduit extends HttpServlet {
                 r.forward(request, response); 
             }
         }
-        else
-        {
+        else{
             request.setAttribute("messageErreur","Le champ du code produit est vide.");
             RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=rechercherModifierProduit");   
             r.forward(request, response);            

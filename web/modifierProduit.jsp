@@ -41,7 +41,7 @@
             </table>
             <input type="hidden" value="<%= pr.getCodeProduit() %>" name="codeP">        
             <input type="hidden" value="produitModifie" name="action">
-            <input type="submit" class="bouton" value="Ajouter"></input>
+            <input type="submit" class="bouton" value="modifier"></input>
             <input type="submit" class="bouton" value="Annuler"></input>
         </form>
         

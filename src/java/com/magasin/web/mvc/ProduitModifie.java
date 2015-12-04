@@ -67,20 +67,21 @@ public class ProduitModifie extends HttpServlet {
         ProduitDAO pdao = new ProduitDAO(Connexion.getInstance());
         Produit p = new Produit();
         p =  pdao.read(request.getParameter("codeP"));
-        if (p != null){
-            request.setAttribute("message", "produit "+p.getNom()+" est déja existant.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
+        System.out.println("update");
+        if (p == null){
+            request.setAttribute("messageProduit", "produit "+p.getNom()+" n'existe pas.");
+            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le messageProduit d'erreur).
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
             r.forward(request, response);
         }else if(!tryParseDbl(request.getParameter("codeBarreP"))){
-            request.setAttribute("message", "le code barre doit être composé de chiffres.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
+            request.setAttribute("messageProduit", "le code barre doit être composé de chiffres.");
+            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le messageProduit d'erreur).
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
             r.forward(request, response);           
         }else if(tryParseDbl(s) == true){
-            request.setAttribute("message", "le code produit doit commencer avec 4 lettres et finir avec 6 chiffres.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
+            request.setAttribute("messageProduit", "le code produit doit commencer avec 4 lettres et finir avec 6 chiffres.");
+            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le messageProduit d'erreur).
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
             r.forward(request, response); 
         }else{
             p = new Produit();
