@@ -172,5 +172,43 @@ public class ProduitDAO extends Dao<Produit>{
         }
         return liste;
     }
-    
+    public List<Produit> findAllParametre(char type, String recherche) {
+                List<Produit> list = new LinkedList<Produit>();
+        try {
+            Statement stm = cnx.createStatement();
+            ResultSet r;
+            
+            switch(type){
+                case 'n'://nom  
+                    r = stm.executeQuery("SELECT * FROM produit WHERE nomProduit like'%"+ recherche+"%'");
+                    break;
+                case 'c': //categorie
+                    r = stm.executeQuery("SELECT * FROM produit WHERE nomProduit like'%"+ recherche+"%'");
+                    break;
+                /*case '':        
+                    ResultSet r = stm.executeQuery("SELECT * FROM `produit` WHERE nomProduit like'%"+ recherche+"%'");
+                    break;*/
+                default:
+                    r = stm.executeQuery("SELECT * FROM produit");
+                    break;
+            }
+            //SELECT * FROM `produit` WHERE nomProduit like'%%'
+            
+            
+            while (r.next()) {
+                Produit p = new Produit();
+                p.setCategorie(r.getString("categorieProduit"));
+                p.setCodeBarre(r.getString("codeBarre"));
+                p.setCodeProduit(r.getString("codeProduit"));
+                p.setNom(r.getString("nomProduit"));
+                p.setPrix(r.getDouble("prixProduit"));
+                p.setQuantite(r.getInt("quantiteProduit"));
+                list.add(p);
+            }
+            r.close();
+            stm.close();
+        } catch (SQLException exp) {
+        }
+        return list;
+    }
 }

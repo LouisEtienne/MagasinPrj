@@ -32,7 +32,7 @@
             <th><%= lp.get(i).getCategorie() %></th>
             <th><%= lp.get(i).getPrix() %></th>
             <th><%= lp.get(i).getQuantite() %> </th>
-            <th><a href=add.do?action=NOMACTION=<%=lp.get(i).getCodeProduit()%> >ajouter</a></th>
+            <th><a href=add.do?action=NOMACTION&codeProduit=<%=lp.get(i).getCodeProduit()%> >ajouter</a></th>
             <!--<th><a href=mod.do?action=modProd&codeProduit=<%/*=lp.get(i).getCodeProduit()*/ %> >modifier</a></th> -->
         </tr>
         <% }%>

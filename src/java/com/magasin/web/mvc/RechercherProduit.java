@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author usager
  */
-@WebServlet(name = "rechercherProduit", urlPatterns = {"/rechercherProduit"})
+@WebServlet(name = "rechercherProduit", urlPatterns = {"/RechercherProduit"})
 public class RechercherProduit extends HttpServlet {
 
     /**
@@ -56,51 +56,51 @@ public class RechercherProduit extends HttpServlet {
         ProduitDAO daop = new ProduitDAO(Connexion.getInstance()); 
         if (request.getParameter("optionRecherche")!=null){
             char rech = request.getParameter("optionRecherche").charAt(0);
-            switch (rech){
-                case 'n': //nom
-                    lp = daop.findAll //(request.getParameter("research"));
-                    if (lp.size() > 0){
-                        HttpSession sess = request.getSession();
-                        sess.setAttribute("listeP", lp);
-                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listeL.jsp");
-                        r.forward(request, response);
-                    }else{
-                        request.setAttribute("message", "la recherche a rien trouvé");
-                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-                        r.forward(request, response);
-                    }
-                    break;
-                case 'd'://recherche description
-                    lp = daop.findAll //(request.getParameter("research"));
-                    if (lp.size() > 0){
-                        HttpSession sess = request.getSession();
-                        sess.setAttribute("listeP", lp);
-                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listeL.jsp");
-                        r.forward(request, response);
-                    }else{
-                        request.setAttribute("message", "la recherche a rien trouvé"); 
-                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-                        r.forward(request, response);
-                    }
-                case 'm'://recherche mot cle
-                    lp = daop.findAll //(request.getParameter("research"));
-                    if (lp.size() > 0){
-                        HttpSession sess = request.getSession();
-                        sess.setAttribute("listeP", lp);
-                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listeL.jsp");
-                        r.forward(request, response);
-                    }else{
-                        request.setAttribute("message", "la recherche a rien trouvé");
-                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-                        r.forward(request, response);
-                    }
-                break;                    
-                default:
-                    request.setAttribute("message", "recherche échouée");
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-                    r.forward(request, response);
-                    
+//            switch (rech){
+//                case 'n': //nom de prod
+            lp = daop.findAllParametre(rech, request.getParameter("elRecherche"));
+            if (lp.size() > 0){
+                HttpSession sess = request.getSession();
+                sess.setAttribute("listeP", lp);                                    
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProd");
+                r.forward(request, response);
+            }else{
+                request.setAttribute("message", "la recherche a rien trouvé");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=rechercheProduit");
+                r.forward(request, response);
             }
+//                    break;
+//                case 'd'://recherche description
+//                    lp = daop.findAllParametre(rech, request.getParameter("elRecherche"));
+//                    if (lp.size() > 0){
+//                        HttpSession sess = request.getSession();
+//                        sess.setAttribute("listeP", lp);
+//                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listeL.jsp");
+//                        r.forward(request, response);
+//                    }else{
+//                        request.setAttribute("message", "la recherche a rien trouvé"); 
+//                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+//                        r.forward(request, response);
+//                    }
+//                case 'm'://recherche mot cle
+//                    lp = daop.findAllParametre(rech, request.getParameter("elRecherche"));
+//                    if (lp.size() > 0){
+//                        HttpSession sess = request.getSession();
+//                        sess.setAttribute("listeP", lp);
+//                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listeL.jsp");
+//                        r.forward(request, response);
+//                    }else{
+//                        request.setAttribute("message", "la recherche a rien trouvé");
+//                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+//                        r.forward(request, response);
+//                    }
+//                break;                    
+//                default:
+//                    request.setAttribute("message", "recherche échouée");
+//                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
+//                    r.forward(request, response);
+                    
+            //}
         }
     }
 
