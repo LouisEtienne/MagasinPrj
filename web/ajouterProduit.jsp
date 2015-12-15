@@ -1,3 +1,6 @@
+<%@page import="java.util.LinkedList"%>
+<%@page import="com.magasin.entities.Produit"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,6 +13,8 @@
         {
             out.println("<span class=\"errorMessage\">"+request.getAttribute("messageCreation")+"</span>");
         }
+        List<Produit> listeCategories = new LinkedList<Produit>();
+        listeCategories = (List<Produit>) request.getAttribute("listeCategories");
         %>
         <form action="ajouterProd.do">
             <label>Code du produit (4 lettres 6 chiffres) : </label><input name="codeP" type="text" pattern=".{10,10}" 
@@ -21,6 +26,23 @@
             <label>Quantit&eacute; : </label><input name="qteP" type="number" min=0 required value="<%=(request.getParameter("qteP")==null)?"":request.getParameter("qteP")%>"><br /><br />
             <label>Description : </label><textarea placeholder="description du produit"></textarea><br><br>
             <label>Cat&eacute;gorie :</label><input type="text" name="catP" value=""> </input>
+            <select name="categorie">
+            <option value="">--Nouvelle categories--</option>
+            
+            <%
+            if(listeCategories.size()>0){
+            for(int i = 0; i < listeCategories.size(); i++)
+            {
+                %>
+                <option value="<%=listeCategories.get(i).getNom()%>">
+                    <%=listeCategories.get(i).getNom()%>
+                </option>
+                <%
+            }
+            }
+            
+            %>
+            </select>
             <br /><br />
             <input type="hidden" name="action" value="ajouterProd" /><br />
             <input type="submit" class="bouton" value="Ajouter"></input>
