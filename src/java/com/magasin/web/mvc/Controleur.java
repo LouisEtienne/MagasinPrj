@@ -104,6 +104,11 @@ public class Controleur extends HttpServlet {
                 r.forward(request, response);
                 return;
             }
+            if("retirerProd".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RetirerProduit");
+                r.forward(request, response);
+                return;
+            }
             if("rechercheAcheteur".equals(action)){
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RechercherAcheteur");
                 r.forward(request, response);

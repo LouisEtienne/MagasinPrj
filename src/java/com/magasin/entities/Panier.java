@@ -57,4 +57,13 @@ public class Panier {
     public boolean supprimerProduit(Produit unProduit) {
         return listeProduits.remove(unProduit);
     }   
+
+    public List<Produit> getListeProduits() {
+        return listeProduits;
+    }
+
+    public void setListeProduits(List<Produit> listeProduits) {
+        this.listeProduits = listeProduits;
+    }
+    
 }

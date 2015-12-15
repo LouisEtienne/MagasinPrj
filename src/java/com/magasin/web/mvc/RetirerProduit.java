@@ -10,6 +10,7 @@ import com.magasin.entities.Panier;
 import com.magasin.entities.Produit;
 import com.magasin.jdbc.Connexion;
 import com.magasin.jdbc.dao.implementation.ProduitDAO;
+import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,14 +20,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 /**
  *
  * @author usager
  */
-@WebServlet(name = "AjouterPanierDachat", urlPatterns = {"/AjouterPanierDachat"})
-public class AjouterPanierDachat extends HttpServlet {
-
+@WebServlet(name = "RetirerProduit", urlPatterns = {"/RetirerProduit"})
+public class RetirerProduit extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,10 +43,10 @@ public class AjouterPanierDachat extends HttpServlet {
             out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AjouterPanierDachat</title>");            
+            out.println("<title>Servlet NewServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AjouterPanierDachat at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }*/
@@ -58,23 +57,27 @@ public class AjouterPanierDachat extends HttpServlet {
         }
         ProduitDAO daop = new ProduitDAO(Connexion.getInstance());
         Panier pan = (Panier) session.getAttribute("Panier");
-        Produit p = daop.read(request.getParameter("codeProduit"));
-        //la qté choisie par l'acheteur
-        
-        if(p != null ){
-            p.setQuantite(Integer.parseInt(request.getParameter("qteProd")));
-            pan.ajouterProduit(p);
-
-            request.setAttribute("message", p.getNom()+" ajouté(es).");
-            session.setAttribute("Panier", pan);
+        Produit p = daop.read(request.getParameter("codeP"));
+       
+        if (p == null)
+             System.out.println("ALLALSLADLS"); 
+        for (int i=0;i<pan.getListeProduits().size();i++)
+        {
+            if //( pan.getListeProduits().get(i).equals(p)){
+                ( pan.getListeProduits().get(i).getCodeProduit().equals(p.getCodeProduit()) ){
+                pan.getListeProduits().remove(i);
+                session.setAttribute("Panier", pan);
+                request.setAttribute("message",p.getNom()+" supprimé(es).");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
+                r.forward(request, response);
+            }
+                
+            
+                
+        }
+            request.setAttribute("message", "erreur lors de la suppression du produit du panier");
             RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=panier");
             r.forward(request, response);
-        }else{
-            request.setAttribute("message", " erreur dans l'ajout du produit");
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
-            r.forward(request, response);
-        }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
