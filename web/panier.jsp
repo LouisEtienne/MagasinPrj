@@ -3,7 +3,10 @@
 <html>
 <head>
 <title>Panier</title>
-<% Panier pan = (Panier)session.getAttribute("Panier"); %>
+<% 
+    Panier pan = (Panier)session.getAttribute("Panier");
+    
+%>
 </head>
 <body>
     <%
@@ -15,25 +18,14 @@
     %>
 
 <h1>Panier d'achat</h1>
+    <%if(pan.getListeProduits().size() == 0) 
+    {  
+    %>
+    <h2>Panier Vide</h2>
+    <%
+    }    
+    %>
 	<table>
-	  <tr>
-		<th>produit</th>
-		<th>prix</th>
-		<th>quantit&eacute;</th>
-		<th></th>
-	  </tr>
-	  <tr>
-		<td>orange</td>
-		<td>1</td>
-		<td>5</td>
-		<td><a href="google.com">retirer</a></td>		
-	  </tr>
-            <tr>
-		<td>prod2</td>
-		<td>2</td>
-		<td>9</td>
-		<td><a href="google.com">retirer</a></td>
-            </tr>
             <% for(int i=0;i<pan.getListeProduits().size();i++){ %>
             <tr>                
 		<td><%= pan.getListeProduits().get(i).getNom() %></td>
@@ -47,6 +39,10 @@
             %>
 	</table> 
 	<br />
-	<input type="button"  class="bouton" value="Voir la facture">
+        <form action="voirPanier.do">
+            <input type="hidden" name="action" value="voirPanier">
+            <input type="submit"  class="bouton" value="Voir la facture">
+        </form>
+	
 </body>
 </html>

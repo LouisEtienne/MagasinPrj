@@ -84,6 +84,11 @@ public class Controleur extends HttpServlet {
                 r.forward(request, response);
                 return;
             }
+            if("voirPanier".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/VoirPanierDachat");  //redirection vers la servlet modifier compte
+                r.forward(request, response);
+                return;
+            }
             if("ajouterPanier".equals(action)){
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/AjouterPanierDachat");  //redirection vers la servlet modifier compte
                 r.forward(request, response);

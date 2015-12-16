@@ -37,7 +37,7 @@
                 <div id='menu'>
                     <ul>                  
                         <li><a href="ctrl.do?action=modifierCompte">Modification de compte</a></li>
-                        <li><a href="?">Gestion du panier</a></li>
+                        <li><a href="index.jsp?vue=panier">Gestion du panier</a></li>
                         <li><a href="index.jsp?vue=rechercheProduit">Rechercher un produit</a></li>                    
                         <li><a href="index.jsp?vue=listProd">consulter les produits</a></li>
                         <li><a href="logout.do?action=logout">D&eacute;connexion</a></li>

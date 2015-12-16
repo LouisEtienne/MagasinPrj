@@ -1,40 +1,33 @@
+<%@page import="java.util.List"%>
+<%@page import="com.magasin.entities.Panier"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Payer</title>
 </head>
+<% 
+    Panier pan = (Panier)session.getAttribute("Panier");
+     //List <Produit> lp = (List<Produit>)session.getAttribute("listeP"); 
+%>
 <body>
 
-<h1>Payer</h1>
-<!--
-	<table style="width:70%">
-	  <tr>
-		<th>produit</th>
-		<th>prix</th>
-		<th>quantité</th>
-		<th></th>
-	  </tr>
-	  <tr>
-		<td>orange</td>
-		<td>1</td>
-		<td>5</td>
-		<td><a href="google.com">retier</a></td>		
-	  </tr>
-	  <tr>
-		<td>prod2</td>
-		<td>2</td>
-		<td>9</td>
-		<td><a href="google.com">retirer</a></td>
-		</tr>
-	</table> -->
+    <h1>Payer</h1>
+    <% for(int i=0; i<pan.getListeProduits().size(); i++){
+
+    %>
 	<ul>
-		<li>orange x 6 = 6$</li>
+            <li><%= pan.getListeProduits().get(i).getNom() + " x " 
+                    + pan.getListeProduits().get(i).getQuantite() + " = "%></li>
 	</ul>
-	Total : 6$
-	carte de credit: <select>
-						<option>123456789</option>
-						<option>987654321</option>
-					</select><br>		<br>
+	Total : <%= pan.getListeProduits().get(i).getQuantite() * pan.getListeProduits().get(i).getPrix()+ " $" %>
+	
+    <%
+        }
+    %>
+    carte de credit: <select>
+                            <option>Tazki</option>
+                            <option>987654321</option>
+                        </select><br><br>
 	<input type="button" class="bouton" value="Payer">
 	<input type="button" class="bouton" value="Annuler">
 </body>
