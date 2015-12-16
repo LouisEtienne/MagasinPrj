@@ -1,3 +1,4 @@
+<%@page import="com.magasin.entities.Taxes"%>
 <%@page import="java.util.List"%>
 <%@page import="com.magasin.entities.Panier"%>
 <!DOCTYPE html>
@@ -7,6 +8,7 @@
 </head>
 <% 
     Panier pan = (Panier)session.getAttribute("Panier");
+    double p=0;
      //List <Produit> lp = (List<Produit>)session.getAttribute("listeP"); 
 %>
 <body>
@@ -18,12 +20,15 @@
 	<ul>
             <li><%= pan.getListeProduits().get(i).getNom() + " x " 
                     + pan.getListeProduits().get(i).getQuantite() + " = "%></li>
+            <% p +=  pan.getListeProduits().get(i).getQuantite() * pan.getListeProduits().get(i).getPrix(); %>
 	</ul>
-	Total : <%= pan.getListeProduits().get(i).getQuantite() * pan.getListeProduits().get(i).getPrix()+ " $" %>
+	
 	
     <%
         }
-    %>
+    %><br>
+    <% p = Taxes.getMontantTotal(p); %>
+    Total : <%= p + " $" %><br>
     carte de credit: <select>
                             <option>Tazki</option>
                             <option>987654321</option>
