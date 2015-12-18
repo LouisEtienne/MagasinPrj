@@ -33,19 +33,7 @@ public class VoirPanierDachat extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet VoirPanierDachat</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet VoirPanierDachat at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }*/                                                                 
+                                                                 
         RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=facture");  //redirection vers la servlet modifier compte
         r.forward(request, response);
         return;

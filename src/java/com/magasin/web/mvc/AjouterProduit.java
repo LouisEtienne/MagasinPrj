@@ -55,25 +55,45 @@ public class AjouterProduit extends HttpServlet {
         Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
         ProduitDAO pdao = new ProduitDAO(Connexion.getInstance());
         Produit p = new Produit();
-        p =  pdao.read(request.getParameter("codeP"));
+        String categorie;
+        List<String> listeCategories = new LinkedList<String>();
+        listeCategories = pdao.findCategorie();
+        
+        p = pdao.read(request.getParameter("codeP"));
         if (p != null){
-            request.setAttribute("message", "produit "+p.getNom()+" est déja existant.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
+            request.setAttribute("listeCategories", listeCategories);
+            request.setAttribute("messageCreation", "produit "+p.getNom()+" est déja existant.");
             RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
             r.forward(request, response);
-        }else if(!tryParseDbl(request.getParameter("codeBarreP"))){
-            request.setAttribute("message", "le code barre doit être composé de chiffres.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
-            r.forward(request, response);           
-        }else if(tryParseDbl(s) == true){
-            request.setAttribute("message", "le code produit doit commencer avec 4 lettres et finir avec 6 chiffres.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
-            r.forward(request, response); 
-        }else{
+        }
+        else 
+        {  
+            if(!tryParseDbl(request.getParameter("codeBarreP"))){
+                request.setAttribute("listeCategories", listeCategories);
+                request.setAttribute("messageCreation", "Le code barre doit être composé de chiffres.");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
+                r.forward(request, response);           
+            }
+            if(tryParseDbl(s) == true){
+                request.setAttribute("messageCreation", "Le code produit doit commencer avec 4 lettres et finir avec 6 chiffres.");
+                request.setAttribute("listeCategories", listeCategories);
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
+                r.forward(request, response); 
+            } 
             p = new Produit();
-            p.setCategorie(request.getParameter("catP"));
+            if(request.getParameter("catP").equals("")) {
+                if(request.getParameter("categorie").equals("nouvelleCategorie")) {
+                    request.setAttribute("messageCreation", "Choisir un élément de la liste ou saisir une nouvelle catégorie.");
+                    request.setAttribute("listeCategories", listeCategories);
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
+                    r.forward(request, response);                 
+                }
+                    categorie = request.getParameter("categorie");
+            }
+            else {
+                categorie = request.getParameter("catP");
+            }
+            p.setCategorie(categorie);
             p.setCodeBarre(request.getParameter("codeBarreP"));
             p.setCodeProduit(request.getParameter("codeP"));
             p.setNom(request.getParameter("nomP"));
@@ -89,7 +109,7 @@ public class AjouterProduit extends HttpServlet {
                 r.forward(request, response);
             }
             else{
-                //Utilisateur inexistant creation
+                request.setAttribute("listeCategories", listeCategories);
                 request.setAttribute("messageCreation", "Erreur lors de la création.");
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
                 r.forward(request, response);

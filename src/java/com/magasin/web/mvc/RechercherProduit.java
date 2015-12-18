@@ -9,7 +9,6 @@ import com.magasin.entities.Produit;
 import com.magasin.jdbc.Connexion;
 import com.magasin.jdbc.dao.implementation.ProduitDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -39,25 +38,12 @@ public class RechercherProduit extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet rechercherProduit</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet rechercherProduit at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }*/
+
         List<Produit> lp = new LinkedList<Produit>();        
         ProduitDAO daop = new ProduitDAO(Connexion.getInstance()); 
         if (request.getParameter("optionRecherche")!=null){
             char rech = request.getParameter("optionRecherche").charAt(0);
-//            switch (rech){
-//                case 'n': //nom de prod
+
             lp = daop.findAllParametre(rech, request.getParameter("elRecherche"));
             if (lp.size() > 0){
                 HttpSession sess = request.getSession();
@@ -65,42 +51,10 @@ public class RechercherProduit extends HttpServlet {
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProd");
                 r.forward(request, response);
             }else{
-                request.setAttribute("message", "la recherche a rien trouvé");
+                request.setAttribute("messageRechercherProduit", "Aucun produit pour cette recherche.");
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=rechercheProduit");
                 r.forward(request, response);
             }
-//                    break;
-//                case 'd'://recherche description
-//                    lp = daop.findAllParametre(rech, request.getParameter("elRecherche"));
-//                    if (lp.size() > 0){
-//                        HttpSession sess = request.getSession();
-//                        sess.setAttribute("listeP", lp);
-//                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listeL.jsp");
-//                        r.forward(request, response);
-//                    }else{
-//                        request.setAttribute("message", "la recherche a rien trouvé"); 
-//                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-//                        r.forward(request, response);
-//                    }
-//                case 'm'://recherche mot cle
-//                    lp = daop.findAllParametre(rech, request.getParameter("elRecherche"));
-//                    if (lp.size() > 0){
-//                        HttpSession sess = request.getSession();
-//                        sess.setAttribute("listeP", lp);
-//                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/listeL.jsp");
-//                        r.forward(request, response);
-//                    }else{
-//                        request.setAttribute("message", "la recherche a rien trouvé");
-//                        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-//                        r.forward(request, response);
-//                    }
-//                break;                    
-//                default:
-//                    request.setAttribute("message", "recherche échouée");
-//                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
-//                    r.forward(request, response);
-                    
-            //}
         }
     }
 

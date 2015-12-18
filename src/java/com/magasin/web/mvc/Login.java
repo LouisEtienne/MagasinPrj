@@ -143,7 +143,7 @@ public class Login extends HttpServlet {
                     ProduitDAO pdao = new ProduitDAO(Connexion.getInstance());
                     lp = pdao.findAll();
                     session.setAttribute("listeP",lp);
-                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");//listProdAdm.jspajouterProduit.jsp
+                    RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
                     r.forward(request, response);
                 }
             }

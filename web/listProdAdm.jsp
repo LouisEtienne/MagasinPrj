@@ -16,6 +16,7 @@
     <h2>Liste de Produits total:<%=lp.size()%></h2>
 <table>
     <tr>
+        <th>Code produit</th>
         <th>Code barre</th>
         <th>Nom du produit</th>
         <th>Cat&eacute;gorie</th>
@@ -28,12 +29,13 @@
           
     %>
     <tr>
+        <th><%= lp.get(i).getCodeProduit() %></th>
         <th><%= lp.get(i).getCodeBarre() %></th>
         <th><%= lp.get(i).getNom() %></th> 
         <th><%= lp.get(i).getCategorie() %></th>
         <th><%= lp.get(i).getPrix() %></th>
         <th><%= lp.get(i).getQuantite() %> </th>
-        <th><a href=supp.do?action=supProd&codeProduit=<%=lp.get(i).getCodeProduit()%> >retirer</a></th>
+        <th><a href=supp.do?action=supProd&codeP=<%=lp.get(i).getCodeProduit()%> >retirer</a></th>
         <th><a href=mod.do?action=modProd&codeProduit=<%=lp.get(i).getCodeProduit()%> >modifier</a></th>
     </tr>
     <% }%>

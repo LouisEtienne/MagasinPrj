@@ -63,14 +63,9 @@ public class ProduitDAO extends Dao<Produit>{
     public Produit read(String code) {
                 PreparedStatement stm = null;
         try {
-//            Statement stm = cnx.createStatement();
-//            ResultSet r = stm.executeQuery("SELECT * FROM user WHERE numId = '" + id + "'");
-            //Avec requête paramétrée :
-            stm = cnx.prepareStatement("SELECT * FROM produit WHERE codeProduit ='" + code +"'");
-            //stm.setString(1,cour);
+            stm = cnx.prepareStatement("SELECT * FROM produit WHERE LOWER(codeProduit) = LOWER('" + code +"')");
             ResultSet r = stm.executeQuery();
             if (r.next()) {
-                //User c = new User(r.getString("numId"),r.getString("mdp"));
                 Produit p = new Produit();
                 p.setCategorie(r.getString("categorieProduit"));
                 p.setCodeBarre(r.getString("codeBarre"));
@@ -131,7 +126,7 @@ public class ProduitDAO extends Dao<Produit>{
         Statement stm = null;
         try {
             stm = cnx.createStatement();
-            int n = stm.executeUpdate("DELETE FROM produit WHERE codeProduit='" + x.getCodeProduit() + "'");
+            int n = stm.executeUpdate("DELETE FROM produit WHERE LOWER(codeProduit) = LOWER('" + x.getCodeProduit() + "')");
             if (n > 0) {
                 stm.close();
                 return true;
@@ -178,22 +173,15 @@ public class ProduitDAO extends Dao<Produit>{
             Statement stm = cnx.createStatement();
             ResultSet r;
             
+            // D'autres types de recherche vont s'ajouter dans le futur.
             switch(type){
                 case 'n'://nom  
-                    r = stm.executeQuery("SELECT * FROM produit WHERE nomProduit like'%"+ recherche+"%'");
+                    r = stm.executeQuery("SELECT * FROM produit WHERE LOWER(nomProduit) LIKE LOWER('%"+ recherche+"%')");
                     break;
-                case 'c': //categorie
-                    r = stm.executeQuery("SELECT * FROM produit WHERE nomProduit like'%"+ recherche+"%'");
-                    break;
-                /*case '':        
-                    ResultSet r = stm.executeQuery("SELECT * FROM `produit` WHERE nomProduit like'%"+ recherche+"%'");
-                    break;*/
                 default:
-                    r = stm.executeQuery("SELECT * FROM produit");
+                    r = stm.executeQuery("SELECT * FROM produit WHERE LOWER(categorieProduit) LIKE LOWER('%"+ recherche+"%')");
                     break;
-            }
-            //SELECT * FROM `produit` WHERE nomProduit like'%%'
-            
+            }      
             
             while (r.next()) {
                 Produit p = new Produit();
@@ -211,4 +199,22 @@ public class ProduitDAO extends Dao<Produit>{
         }
         return list;
     }
+    
+    public List<String> findCategorie() {
+                List<String> list = new LinkedList<String>();
+        try {
+            Statement stm = cnx.createStatement();
+            ResultSet r;
+            
+            r = stm.executeQuery("SELECT DISTINCT categorieProduit FROM produit");
+      
+            while (r.next()) {
+                list.add(r.getString("categorieProduit"));
+            }
+            r.close();
+            stm.close();
+        } catch (SQLException exp) {
+        }
+        return list;
+    }      
 }

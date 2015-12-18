@@ -48,19 +48,6 @@ public class ProduitModifie extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        
-        /*try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProduitModifie</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProduitModifie at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }*/
         String s = request.getParameter("codeP").substring(0, 4);
         
         Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
@@ -69,21 +56,21 @@ public class ProduitModifie extends HttpServlet {
         p =  pdao.read(request.getParameter("codeP"));
         System.out.println("update");
         if (p == null){
-            request.setAttribute("messageProduit", "produit "+p.getNom()+" n'existe pas.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le messageProduit d'erreur).
+            request.setAttribute("messageProduit", "Le produit "+p.getNom()+" n'existe pas.");
             RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
             r.forward(request, response);
-        }else if(!tryParseDbl(request.getParameter("codeBarreP"))){
-            request.setAttribute("messageProduit", "le code barre doit être composé de chiffres.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le messageProduit d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
-            r.forward(request, response);           
-        }else if(tryParseDbl(s) == true){
-            request.setAttribute("messageProduit", "le code produit doit commencer avec 4 lettres et finir avec 6 chiffres.");
-            //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le messageProduit d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
-            r.forward(request, response); 
-        }else{
+        }else { 
+            
+            if(!tryParseDbl(request.getParameter("codeBarreP"))){
+                request.setAttribute("messageProduit", "Le code barre doit être composé de chiffres.");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
+                r.forward(request, response); 
+            }
+            if(tryParseDbl(s) == true){
+                request.setAttribute("messageProduit", "Le code produit doit commencer avec 4 lettres et finir avec 6 chiffres.");
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
+                r.forward(request, response);
+            }
             p = new Produit();
             p.setCategorie(request.getParameter("catP"));
             p.setCodeBarre(request.getParameter("codeBarreP"));
@@ -94,8 +81,6 @@ public class ProduitModifie extends HttpServlet {
             
             if(pdao.update(p))
             {
-                //Utilisateur inexistant creation
-                //request.setAttribute("message", "Mot de passe incorrect.");
                 List <Produit> lp = new LinkedList<Produit>();
                 lp = pdao.findAll();
                 HttpSession session = request.getSession();
@@ -104,12 +89,10 @@ public class ProduitModifie extends HttpServlet {
                 r.forward(request, response);
             }
             else{
-                //
                 request.setAttribute("messageModification", "Erreur lors de la modification.");
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=modifierProduit");
                 r.forward(request, response);
-            }
-            
+            } 
             
         }
         

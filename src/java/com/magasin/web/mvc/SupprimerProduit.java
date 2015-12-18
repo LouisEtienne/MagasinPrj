@@ -50,11 +50,11 @@ public class SupprimerProduit extends HttpServlet {
                 List <Produit> lp = new LinkedList<Produit>();
                 lp = pdao.findAll();
                 session.setAttribute("listeP",lp);
-                request.setAttribute("messageProduit", "produit supprimer avec succès.");
+                request.setAttribute("messageProduit", "Produit supprimé avec succès.");
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
                 r.forward(request, response);
             }else{
-                request.setAttribute("messageProduit", "échec lors de la supression du produit.");
+                request.setAttribute("messageProduit", "Échec lors de la supression du produit.");
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=listProdAdm");
                 r.forward(request, response);
             }

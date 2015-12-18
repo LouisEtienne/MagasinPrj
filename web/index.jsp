@@ -39,7 +39,7 @@
                         <li><a href="ctrl.do?action=modifierCompte">Modification de compte</a></li>
                         <li><a href="index.jsp?vue=panier">Gestion du panier</a></li>
                         <li><a href="index.jsp?vue=rechercheProduit">Rechercher un produit</a></li>                    
-                        <li><a href="index.jsp?vue=listProd">consulter les produits</a></li>
+                        <li><a href="index.jsp?vue=listProd">Consulter les produits</a></li>
                         <li><a href="logout.do?action=logout">D&eacute;connexion</a></li>
                     </ul>
                 </div>
@@ -51,8 +51,8 @@
                 <div id='menuadmin'>
                     <ul>                        
                         <li><a href="index.jsp?vue=rechercherAcheteur">Modifier profil acheteur</a></li>
-                        <li><a href="index.jsp?vue=ajouterProduit">Ajouter un produit</a></li>
-                        <li><a href="index.jsp?vue=rechercherModifierProduit">Modifier un produit</a></li>
+                        <li><a href="ctrl.do?action=construireCategorie">Ajouter un produit</a></li>
+                        <%--<li><a href="index.jsp?vue=rechercherModifierProduit">Modifier un produit</a></li>--%>
                         <li><a href="index.jsp?vue=rechercherSupprimerProduit">Supprimer un produit</a></li>
                         <li><a href="ctrl.do?action=listeProd">Liste de produits</a></li>
                         <li><a href="logout.do?action=logout">D&eacute;connexion</a></li>
@@ -76,11 +76,7 @@
                    else
                     {
             %>
-                        <h1>Erreur 404</h1>
-<!--                        <ul class="box">
-                        <li><a href="ctrl.do?action=">Gestion de panier</a></li>  
-                        <li><a href="ctrl.do?action=modifierCompte">Modification de compte</a></li>                        
-                        </ul>-->
+                        <h1>Erreur 404 : Page introuvable</h1>
             <%
                     }
             %>

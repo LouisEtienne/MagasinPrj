@@ -14,11 +14,11 @@
     <body>
         <h1>Rechercher un produit pour la suppression</h1>
         <div id="formRechercherProduit">
-            <form>
+            <form action="rechercherSupprimerProduit.do">
                 <label for="labelcodearechercher"> Code produit &agrave; rechercher : </label>
                 <input type="text" name="codeP" /><br /><br />
 		<input type="image" src="images/boutonSupprimer.jpg" />
-                <input name="action" value="supProd" type="hidden" />
+                <input name="action" value="rechercherSupprimerProduit" type="hidden" />
             </form>
             <%
             if (request.getAttribute("messageErreur")!=null)

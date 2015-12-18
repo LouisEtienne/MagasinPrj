@@ -20,13 +20,14 @@
 <div>
     <table>
         <tr>
+            <th>Code produit</th>
             <th>Code barre</th>
             <th>Nom du produit</th>
             <th>Cat&eacute;gorie</th>
             <th>Prix</th>
             <th>Quantit&eacute;</th>
             <th>Quantité d'ajout?</th>
-            <th>ajouter au panier</th>
+            <th>Ajouter au panier</th>
         </tr>
         <% for(int i=0; i<lp.size(); i++){
 
@@ -34,15 +35,14 @@
         
         <tr>
             <form post="" action="ajoutProd.do" >
+                <th><%= lp.get(i).getCodeProduit() %></th>
                 <th><%= lp.get(i).getCodeBarre() %></th>
                 <th><%= lp.get(i).getNom() %></th> 
                 <th><%= lp.get(i).getCategorie() %></th>
                 <th><%= lp.get(i).getPrix() %></th>
                 <th><%= lp.get(i).getQuantite() %> </th>
                 <th><input name="qteProd"type='number' min='1' max='<%= lp.get(i).getQuantite() %>'></input> </th>
-                <th><input name=""type='submit' value="ajouter"></input> </th>
-                <!-- <th><a href=add.do?action=ajouterPanier&codeProduit=<% /*=lp.get(i).getCodeProduit()*/ %>&qteProd=>ajouter</a></th> -->
-                <!--<th><a href=mod.do?action=modProd&codeProduit=<%/*=lp.get(i).getCodeProduit()*/ %> >modifier</a></th> -->
+                <th><input name=""type='submit' class="minibouton" value="Ajouter"></input> </th>
                 <input type="hidden" name="action" value="ajouterPanier" >
                 <input type="hidden" name="codeProduit" value="<%= lp.get(i).getCodeProduit() %>" >       
             </form>

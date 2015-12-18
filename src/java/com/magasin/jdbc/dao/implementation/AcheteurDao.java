@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JOptionPane;
-//import org.apache.catalina.User;
 
 /**
  *
@@ -62,37 +60,6 @@ public class AcheteurDao extends Dao<Acheteur> {
 		return false;
         }
         
-//        public boolean createModel(Acheteur x) {
-//		String req = "INSERT INTO membre (`nom` , `motDePasse` , `courriel`) "+
-//				"VALUES ('"+x.getNom()+"','"+x.getMotDePasse()+"','"+x.getCourriel()+"')";
-//		Statement stm = null;
-//		try 
-//		{
-//			stm = cnx.createStatement(); 
-//			int n= stm.executeUpdate(req);
-//			if (n>0)
-//			{
-//				stm.close();
-//				return true;
-//			}
-//		}
-//		catch (SQLException exp)
-//		{
-//		}
-//		finally
-//		{
-//			if (stm!=null)
-//			try {
-//				stm.close();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}			
-//		}
-//		return false;
-//	}
-
-
     @Override
     public boolean delete(Acheteur x) {
         // TODO Auto-generated method stub
@@ -123,14 +90,11 @@ public class AcheteurDao extends Dao<Acheteur> {
         // TODO Auto-generated method stub
         PreparedStatement stm = null;
         try {
-//            Statement stm = cnx.createStatement();
-//            ResultSet r = stm.executeQuery("SELECT * FROM user WHERE numId = '" + id + "'");
-            //Avec requête paramétrée :
+
             stm = cnx.prepareStatement("SELECT * FROM acheteur WHERE courriel = ? ");
             stm.setString(1,courriel);
             ResultSet r = stm.executeQuery();
             if (r.next()) {
-                //User c = new User(r.getString("numId"),r.getString("mdp"));
                 Acheteur c = new Acheteur();
                 c.setCourriel(r.getString("courriel"));
                 c.setMotPasseAcheteur(r.getString("motPasseAcheteur"));
@@ -160,6 +124,35 @@ public class AcheteurDao extends Dao<Acheteur> {
             }
         }
         return null;
+    }
+    
+    public boolean verifierCompteExiste(String unCourriel) {
+                 PreparedStatement stm = null;
+        try {
+            stm = cnx.prepareStatement("SELECT * FROM acheteur WHERE courriel = ? ");
+            stm.setString(1,unCourriel);
+            ResultSet r = stm.executeQuery();
+            if (r.next()) {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        } catch (SQLException exp) {
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;   
+    
+    
     }
 
     @Override

@@ -1,23 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cette servlet sert à construire une liste de catégories à afficher pour
+ * la page Ajouter un produit dans la section administrateur.
+ * Fichier: ConstruireCategorie.java
+ * Programmeur: Michel Plamondon
+ * Date: 2015-12-16
  */
 package com.magasin.web.mvc;
 
-import com.magasin.entities.Produit;
-import com.magasin.jdbc.Connexion;
-import com.magasin.jdbc.dao.implementation.ProduitDAO;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.magasin.jdbc.Connexion;
+import com.magasin.jdbc.dao.implementation.ProduitDAO;
+import java.util.LinkedList;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 
-@WebServlet(name = "RechercherSupprimerProduit", urlPatterns = {"/RechercherSupprimerProduit"})
-public class RechercherSupprimerProduit extends HttpServlet {
+/**
+ *
+ * @author MonOrdi
+ */
+@WebServlet(name = "ConstruireCategorie", urlPatterns = {"/ConstruireCategorie"})
+public class ConstruireCategorie extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,27 +39,14 @@ public class RechercherSupprimerProduit extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String codeProduit = request.getParameter("codeP");
+        List<String> listeCategories = new LinkedList<String>();
+        ProduitDAO listeCategoriesDAO = new ProduitDAO(Connexion.getInstance());
+        listeCategories = listeCategoriesDAO.findCategorie();
         
-        if(!codeProduit.equals("")) {
-            ProduitDAO unProduitDAO = new ProduitDAO(Connexion.getInstance());
-            Produit unProduit = unProduitDAO.read(codeProduit);
-            if(unProduit == null) {
-                request.setAttribute("messageErreur", "Ce code produit n'existe pas.");
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=rechercherSupprimerProduit");
-                r.forward(request, response);                
-            }
-            else {
-                request.setAttribute("unProduit", unProduit);
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=supprimerProduit");
-                r.forward(request, response);
-            }
-        }
-        else {
-            request.setAttribute("messageErreur", "Le champ est vide.");
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=rechercherSupprimerProduit");
-            r.forward(request, response);            
-        }
+        request.setAttribute("listeCategories", listeCategories);
+        RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=ajouterProduit");
+        r.forward(request, response);       
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

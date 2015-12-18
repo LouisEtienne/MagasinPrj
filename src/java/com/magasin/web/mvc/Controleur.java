@@ -59,12 +59,12 @@ public class Controleur extends HttpServlet {
             }
             
             if("creerCompte".equals(action)){
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");  //redirection vers la servlet création de compte
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/creerCompte.jsp");
                 r.forward(request, response);
                 return;
             }
-            if("compteCree".equals(action)){
-                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/CreationCompte");  //redirection vers la servlet login
+            if("creerCpt".equals(action)){
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/CreationCompte");  //redirection vers la servlet creationCompte
                 r.forward(request, response);
                 return;
             }
@@ -135,8 +135,32 @@ public class Controleur extends HttpServlet {
                 r.forward(request, response);
                 return;        
             }
+             if ("construireCategorie".equals(action))
+            {                
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/ConstruireCategorie");  //redirection vers l'index
+                r.forward(request, response);
+                return;        
+            }
+             
+            if ("rechercherSupprimerProduit".equals(action))
+            {                
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RechercherSupprimerProduit");  //redirection vers l'index
+                r.forward(request, response);
+                return;        
+            }
+             if ("rechercherModifierProduit".equals(action))
+            {                
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/RechercherModifierProduit");  //redirection vers l'index
+                r.forward(request, response);
+                return;        
+            }
+            if ("modifierCompteAdmin".equals(action))
+            {                
+                RequestDispatcher r = this.getServletContext().getRequestDispatcher("/ModifierCompteAdmin");  //redirection vers l'index
+                r.forward(request, response);
+                return;        
+            }           
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

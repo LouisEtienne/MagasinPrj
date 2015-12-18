@@ -1,24 +1,29 @@
-<form method="post" action="ctrl.do">
-	<input name="elRecherche" id="elRecherche" type="text" placeholder="chercher un produit">
+<h2>Rechercher un produit</h2>
+<div id="formRechercherProduit">   
+    <form method="post" action="rechercherProd.do">
+	<input name="elRecherche" id="elRecherche" type="text" placeholder="Chercher un produit">
         <select name="optionRecherche" onchange="chgPlaceHolder(value)">
-		<option value="n">nom</option>
-		<option value="d">description</option>
-		<option value="m">mot clés</option>
+		<option value="n">Nom</option>
+		<option value="m">Catégorie</option>
 	</select>
-	<input type="submit" value="chercher">
-        <input type="hidden" name="action" value="rechercherProd">
-</form>
+        <input name="action" value="rechercherProd" type="hidden" />        
+	<input type="submit" classe="bouton" value="Chercher">
+    </form>
+</div>
+<%
+    if (request.getAttribute("messageRechercherProduit")!=null)
+    {
+        out.println("<span class=\"errorMessage\">"+request.getAttribute("messageRechercherProduit")+"</span>");
+    }
+%>
 <script>
-        function chgPlaceHolder($x){
+    function chgPlaceHolder($x){
         //alert($x);
         if ($x == 'n'){
-                document.getElementById('elRecherche').placeholder='recherche par nom de produit';  
-        }
-        if($x == 'd'){
-                document.getElementById('elRecherche').placeholder='recherche par description de produit';  
+                document.getElementById('elRecherche').placeholder='Recherche par nom de produit';  
         }
         if($x == 'c'){
-                document.getElementById('elRecherche').placeholder='recherche par catégorie de produit';  
+                document.getElementById('elRecherche').placeholder='Recherche par catégorie de produit';  
         }          
-        }       
+    }       
 </script> 

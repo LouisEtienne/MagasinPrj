@@ -29,7 +29,7 @@
     %><br>
     <% p = Taxes.getMontantTotal(p); %>
     Total : <%= p + " $" %><br>
-    carte de credit: <select>
+    Carte de credit: <select>
                             <option>Tazki</option>
                             <option>987654321</option>
                         </select><br><br>

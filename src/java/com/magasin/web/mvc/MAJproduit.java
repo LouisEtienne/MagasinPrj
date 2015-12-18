@@ -47,7 +47,10 @@ public class MAJproduit extends HttpServlet {
             Produit p = pdao.read(codeProduit);
             if(p != null) {
                 List <Produit> lp = new LinkedList<Produit>();
+                List <String> listeCategories = new LinkedList<String>();
                 lp = pdao.findAll();
+                listeCategories = pdao.findCategorie();
+                request.setAttribute("listeCategories", listeCategories);
                 session.setAttribute("listeP",lp);
                 session.setAttribute("produit",p);
                 RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp?vue=modifierProduit");   
